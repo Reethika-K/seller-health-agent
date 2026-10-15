@@ -1,0 +1,201 @@
+seller_id,category,join_date,size_tier
+S0001,Electronics Accessories,2026-05-09,Medium
+S0002,Home & Kitchen,2024-10-15,Large
+S0003,Electronics Accessories,2023-08-21,Small
+S0004,Beauty & Personal Care,2021-06-18,Small
+S0005,Fashion,2022-06-08,Small
+S0006,Kids & Toys,2022-03-15,Small
+S0007,Electronics Accessories,2023-06-24,Small
+S0008,Electronics Accessories,2025-10-27,Medium
+S0009,Fashion,2024-04-22,Small
+S0010,Home & Kitchen,2021-01-14,Small
+S0011,Fashion,2026-03-06,Medium
+S0012,Kids & Toys,2021-09-03,Small
+S0013,Beauty & Personal Care,2022-09-22,Small
+S0014,Electronics Accessories,2024-11-19,Medium
+S0015,Home & Kitchen,2022-03-22,Medium
+S0016,Fashion,2021-11-26,Medium
+S0017,Home & Kitchen,2026-03-08,Small
+S0018,Fashion,2025-11-04,Small
+S0019,Electronics Accessories,2022-10-29,Large
+S0020,Beauty & Personal Care,2021-01-10,Small
+S0021,Electronics Accessories,2026-04-15,Small
+S0022,Fashion,2022-10-29,Small
+S0023,Kids & Toys,2025-09-06,Medium
+S0024,Kids & Toys,2022-11-29,Large
+S0025,Electronics Accessories,2023-01-21,Small
+S0026,Fashion,2025-12-05,Large
+S0027,Home & Kitchen,2022-09-29,Small
+S0028,Fashion,2021-07-30,Small
+S0029,Fashion,2021-10-05,Medium
+S0030,Beauty & Personal Care,2026-04-05,Small
+S0031,Beauty & Personal Care,2025-02-02,Small
+S0032,Kids & Toys,2025-02-12,Small
+S0033,Fashion,2023-12-22,Large
+S0034,Fashion,2025-08-24,Small
+S0035,Home & Kitchen,2021-10-22,Large
+S0036,Fashion,2022-03-24,Medium
+S0037,Fashion,2022-01-21,Small
+S0038,Home & Kitchen,2025-05-07,Medium
+S0039,Fashion,2026-05-04,Small
+S0040,Beauty & Personal Care,2021-07-04,Small
+S0041,Home & Kitchen,2024-11-09,Medium
+S0042,Electronics Accessories,2022-11-17,Medium
+S0043,Beauty & Personal Care,2021-07-06,Small
+S0044,Fashion,2026-03-22,Small
+S0045,Electronics Accessories,2026-05-22,Medium
+S0046,Electronics Accessories,2026-05-22,Medium
+S0047,Home & Kitchen,2025-07-29,Medium
+S0048,Fashion,2026-02-20,Small
+S0049,Beauty & Personal Care,2021-12-29,Small
+S0050,Fashion,2023-02-24,Small
+S0051,Fashion,2021-02-17,Medium
+S0052,Fashion,2022-02-04,Medium
+S0053,Electronics Accessories,2021-03-22,Small
+S0054,Beauty & Personal Care,2025-02-17,Small
+S0055,Beauty & Personal Care,2024-11-12,Small
+S0056,Electronics Accessories,2021-11-01,Medium
+S0057,Home & Kitchen,2025-02-04,Medium
+S0058,Home & Kitchen,2026-02-09,Small
+S0059,Fashion,2022-10-22,Small
+S0060,Fashion,2022-02-05,Small
+S0061,Beauty & Personal Care,2021-03-12,Small
+S0062,Home & Kitchen,2021-05-31,Medium
+S0063,Home & Kitchen,2025-10-08,Small
+S0064,Electronics Accessories,2022-04-02,Small
+S0065,Beauty & Personal Care,2021-11-08,Large
+S0066,Home & Kitchen,2022-08-26,Small
+S0067,Home & Kitchen,2021-12-29,Small
+S0068,Fashion,2021-11-24,Small
+S0069,Fashion,2024-01-04,Small
+S0070,Home & Kitchen,2026-03-14,Small
+S0071,Fashion,2023-12-16,Small
+S0072,Home & Kitchen,2025-04-30,Small
+S0073,Electronics Accessories,2025-10-20,Small
+S0074,Fashion,2025-09-28,Small
+S0075,Fashion,2022-08-28,Medium
+S0076,Fashion,2023-09-12,Small
+S0077,Fashion,2023-07-04,Small
+S0078,Beauty & Personal Care,2022-05-25,Small
+S0079,Home & Kitchen,2023-06-17,Medium
+S0080,Electronics Accessories,2023-01-07,Medium
+S0081,Beauty & Personal Care,2025-12-14,Small
+S0082,Home & Kitchen,2021-10-29,Small
+S0083,Electronics Accessories,2023-12-30,Small
+S0084,Fashion,2025-07-31,Small
+S0085,Fashion,2022-01-11,Small
+S0086,Fashion,2022-06-15,Small
+S0087,Beauty & Personal Care,2026-02-17,Small
+S0088,Home & Kitchen,2025-05-17,Small
+S0089,Fashion,2026-05-01,Small
+S0090,Home & Kitchen,2024-12-15,Small
+S0091,Fashion,2025-11-17,Medium
+S0092,Beauty & Personal Care,2022-08-03,Small
+S0093,Home & Kitchen,2023-08-07,Large
+S0094,Home & Kitchen,2021-02-16,Small
+S0095,Fashion,2022-05-17,Medium
+S0096,Beauty & Personal Care,2023-02-13,Large
+S0097,Fashion,2023-09-02,Large
+S0098,Fashion,2026-02-14,Medium
+S0099,Fashion,2026-01-14,Medium
+S0100,Kids & Toys,2023-02-03,Medium
+S0101,Kids & Toys,2026-05-24,Medium
+S0102,Beauty & Personal Care,2026-03-10,Small
+S0103,Fashion,2025-03-27,Small
+S0104,Kids & Toys,2021-08-25,Small
+S0105,Electronics Accessories,2023-12-10,Medium
+S0106,Beauty & Personal Care,2022-08-04,Small
+S0107,Home & Kitchen,2024-03-13,Small
+S0108,Fashion,2025-06-25,Medium
+S0109,Fashion,2024-05-31,Small
+S0110,Kids & Toys,2025-12-03,Small
+S0111,Home & Kitchen,2022-04-06,Small
+S0112,Fashion,2025-06-05,Small
+S0113,Fashion,2024-05-21,Small
+S0114,Home & Kitchen,2021-02-17,Small
+S0115,Fashion,2023-03-23,Small
+S0116,Electronics Accessories,2023-12-11,Small
+S0117,Electronics Accessories,2023-06-28,Small
+S0118,Beauty & Personal Care,2022-03-10,Medium
+S0119,Home & Kitchen,2025-01-16,Small
+S0120,Beauty & Personal Care,2022-12-26,Large
+S0121,Home & Kitchen,2021-09-16,Large
+S0122,Beauty & Personal Care,2023-05-01,Small
+S0123,Fashion,2024-01-04,Small
+S0124,Home & Kitchen,2025-08-20,Small
+S0125,Fashion,2025-01-28,Medium
+S0126,Home & Kitchen,2021-04-25,Medium
+S0127,Fashion,2023-07-01,Medium
+S0128,Fashion,2024-10-16,Small
+S0129,Fashion,2024-02-28,Medium
+S0130,Home & Kitchen,2023-04-20,Small
+S0131,Fashion,2023-07-09,Medium
+S0132,Kids & Toys,2022-08-23,Small
+S0133,Home & Kitchen,2025-01-10,Medium
+S0134,Fashion,2022-12-01,Medium
+S0135,Home & Kitchen,2024-01-11,Small
+S0136,Fashion,2021-05-06,Medium
+S0137,Kids & Toys,2025-07-25,Small
+S0138,Home & Kitchen,2025-08-13,Medium
+S0139,Electronics Accessories,2023-12-05,Small
+S0140,Fashion,2023-09-04,Large
+S0141,Home & Kitchen,2022-09-09,Small
+S0142,Home & Kitchen,2024-03-28,Large
+S0143,Kids & Toys,2021-06-27,Medium
+S0144,Home & Kitchen,2023-11-10,Small
+S0145,Home & Kitchen,2025-09-20,Medium
+S0146,Fashion,2025-10-10,Medium
+S0147,Fashion,2021-03-02,Large
+S0148,Home & Kitchen,2025-09-10,Small
+S0149,Home & Kitchen,2021-04-21,Small
+S0150,Fashion,2024-12-01,Small
+S0151,Electronics Accessories,2025-11-29,Medium
+S0152,Kids & Toys,2024-10-09,Small
+S0153,Fashion,2023-02-07,Small
+S0154,Home & Kitchen,2024-02-10,Small
+S0155,Fashion,2022-03-07,Small
+S0156,Beauty & Personal Care,2023-02-14,Small
+S0157,Fashion,2024-04-03,Medium
+S0158,Beauty & Personal Care,2022-12-29,Medium
+S0159,Beauty & Personal Care,2021-03-06,Small
+S0160,Electronics Accessories,2024-03-12,Small
+S0161,Fashion,2025-08-03,Large
+S0162,Kids & Toys,2024-03-18,Small
+S0163,Fashion,2021-11-19,Small
+S0164,Fashion,2025-03-30,Small
+S0165,Home & Kitchen,2021-04-19,Medium
+S0166,Fashion,2023-03-31,Small
+S0167,Electronics Accessories,2023-03-04,Medium
+S0168,Electronics Accessories,2024-09-15,Medium
+S0169,Fashion,2021-06-14,Small
+S0170,Kids & Toys,2026-03-22,Medium
+S0171,Fashion,2024-10-21,Medium
+S0172,Home & Kitchen,2024-02-28,Small
+S0173,Fashion,2023-11-04,Small
+S0174,Kids & Toys,2023-11-10,Small
+S0175,Fashion,2025-08-14,Small
+S0176,Fashion,2025-03-14,Small
+S0177,Home & Kitchen,2025-11-26,Large
+S0178,Kids & Toys,2023-05-01,Small
+S0179,Kids & Toys,2024-07-10,Small
+S0180,Beauty & Personal Care,2023-05-14,Medium
+S0181,Kids & Toys,2023-03-28,Small
+S0182,Kids & Toys,2022-08-19,Large
+S0183,Home & Kitchen,2023-06-20,Medium
+S0184,Fashion,2022-12-03,Small
+S0185,Electronics Accessories,2023-04-02,Small
+S0186,Beauty & Personal Care,2022-11-24,Large
+S0187,Fashion,2023-02-03,Medium
+S0188,Fashion,2024-09-17,Large
+S0189,Beauty & Personal Care,2025-02-01,Small
+S0190,Fashion,2022-03-03,Medium
+S0191,Kids & Toys,2024-07-26,Medium
+S0192,Fashion,2023-06-16,Small
+S0193,Fashion,2025-05-09,Small
+S0194,Electronics Accessories,2024-02-03,Medium
+S0195,Fashion,2023-07-24,Small
+S0196,Fashion,2023-01-15,Small
+S0197,Home & Kitchen,2023-07-31,Medium
+S0198,Electronics Accessories,2024-06-21,Small
+S0199,Fashion,2021-03-25,Small
+S0200,Fashion,2023-08-26,Small
