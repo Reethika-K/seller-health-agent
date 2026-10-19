@@ -1,0 +1,101 @@
+seller_id,category,join_date,size_tier
+S0001,Staples,2021-06-23,Small
+S0002,Staples,2025-07-16,Small
+S0003,Fruits & Vegetables,2024-01-16,Small
+S0004,Fruits & Vegetables,2024-05-19,Small
+S0005,Staples,2026-03-29,Small
+S0006,Personal & Home Care,2023-06-07,Small
+S0007,Fruits & Vegetables,2026-03-24,Small
+S0008,Fruits & Vegetables,2021-03-04,Medium
+S0009,Staples,2024-06-12,Large
+S0010,Snacks & Beverages,2024-12-10,Small
+S0011,Dairy & Bakery,2023-01-28,Small
+S0012,Dairy & Bakery,2021-10-13,Medium
+S0013,Fruits & Vegetables,2021-11-03,Medium
+S0014,Snacks & Beverages,2022-03-07,Small
+S0015,Dairy & Bakery,2022-10-22,Small
+S0016,Dairy & Bakery,2024-06-08,Medium
+S0017,Snacks & Beverages,2021-02-18,Small
+S0018,Staples,2023-04-24,Small
+S0019,Snacks & Beverages,2022-03-03,Medium
+S0020,Staples,2026-04-10,Large
+S0021,Fruits & Vegetables,2025-02-27,Small
+S0022,Staples,2021-02-15,Small
+S0023,Snacks & Beverages,2021-08-04,Medium
+S0024,Personal & Home Care,2023-10-05,Medium
+S0025,Personal & Home Care,2025-06-20,Small
+S0026,Fruits & Vegetables,2025-08-03,Large
+S0027,Staples,2021-01-24,Small
+S0028,Dairy & Bakery,2022-02-20,Large
+S0029,Snacks & Beverages,2025-10-30,Small
+S0030,Staples,2021-09-19,Small
+S0031,Personal & Home Care,2023-02-12,Small
+S0032,Personal & Home Care,2022-06-12,Small
+S0033,Snacks & Beverages,2022-04-16,Small
+S0034,Personal & Home Care,2021-02-11,Medium
+S0035,Snacks & Beverages,2026-04-23,Small
+S0036,Dairy & Bakery,2024-12-02,Medium
+S0037,Fruits & Vegetables,2023-08-29,Small
+S0038,Snacks & Beverages,2023-06-07,Small
+S0039,Staples,2021-05-24,Medium
+S0040,Snacks & Beverages,2024-01-16,Small
+S0041,Staples,2025-09-25,Medium
+S0042,Fruits & Vegetables,2022-12-22,Large
+S0043,Personal & Home Care,2022-08-08,Medium
+S0044,Snacks & Beverages,2024-11-26,Medium
+S0045,Staples,2023-09-05,Medium
+S0046,Staples,2022-09-27,Small
+S0047,Staples,2025-11-19,Large
+S0048,Dairy & Bakery,2023-11-23,Small
+S0049,Fruits & Vegetables,2024-06-19,Medium
+S0050,Snacks & Beverages,2024-05-07,Small
+S0051,Dairy & Bakery,2025-08-19,Medium
+S0052,Dairy & Bakery,2022-08-25,Medium
+S0053,Personal & Home Care,2025-03-06,Medium
+S0054,Dairy & Bakery,2024-12-12,Small
+S0055,Staples,2023-09-07,Large
+S0056,Fruits & Vegetables,2024-08-19,Medium
+S0057,Snacks & Beverages,2021-11-15,Small
+S0058,Dairy & Bakery,2021-01-13,Small
+S0059,Dairy & Bakery,2024-05-07,Large
+S0060,Dairy & Bakery,2024-04-26,Medium
+S0061,Personal & Home Care,2026-01-27,Medium
+S0062,Snacks & Beverages,2024-08-04,Large
+S0063,Snacks & Beverages,2025-12-20,Small
+S0064,Staples,2021-03-19,Medium
+S0065,Snacks & Beverages,2026-05-23,Medium
+S0066,Fruits & Vegetables,2021-05-13,Small
+S0067,Fruits & Vegetables,2022-06-03,Small
+S0068,Staples,2021-06-15,Medium
+S0069,Snacks & Beverages,2022-06-04,Large
+S0070,Fruits & Vegetables,2025-11-20,Small
+S0071,Personal & Home Care,2026-01-09,Large
+S0072,Dairy & Bakery,2022-01-29,Large
+S0073,Staples,2021-05-21,Medium
+S0074,Dairy & Bakery,2025-04-13,Small
+S0075,Staples,2024-09-06,Small
+S0076,Snacks & Beverages,2022-12-01,Small
+S0077,Fruits & Vegetables,2023-04-12,Medium
+S0078,Staples,2021-10-19,Medium
+S0079,Dairy & Bakery,2023-11-14,Small
+S0080,Snacks & Beverages,2022-05-22,Medium
+S0081,Staples,2024-04-04,Medium
+S0082,Personal & Home Care,2026-02-05,Medium
+S0083,Snacks & Beverages,2024-05-03,Large
+S0084,Staples,2023-03-19,Small
+S0085,Snacks & Beverages,2021-09-06,Medium
+S0086,Staples,2025-06-29,Medium
+S0087,Fruits & Vegetables,2025-11-01,Medium
+S0088,Personal & Home Care,2021-12-13,Small
+S0089,Fruits & Vegetables,2023-06-07,Small
+S0090,Staples,2025-03-12,Small
+S0091,Fruits & Vegetables,2023-10-01,Small
+S0092,Fruits & Vegetables,2025-04-22,Large
+S0093,Personal & Home Care,2021-03-06,Large
+S0094,Staples,2024-07-02,Small
+S0095,Fruits & Vegetables,2025-05-16,Medium
+S0096,Dairy & Bakery,2023-06-12,Small
+S0097,Fruits & Vegetables,2024-05-11,Small
+S0098,Personal & Home Care,2021-07-18,Medium
+S0099,Personal & Home Care,2023-10-05,Small
+S0100,Staples,2025-06-15,Small
