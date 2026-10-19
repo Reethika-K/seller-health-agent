@@ -29,3 +29,12 @@ MEESHO = {
     "Finance":        [[1, 3],   [1/3, 1]],
     "Inventory":      [[1, 5],   [1/5, 1]],
 }
+
+# Order: Healthy, Watch, At-risk, Critical
+LEVELS = ["Healthy", "Watch", "At-risk", "Critical"]
+LEVEL_MATRIX = [
+    [1,   3,   5,   9],
+    [1/3, 1,   3,   5],
+    [1/5, 1/3, 1,   3],
+    [1/9, 1/5, 1/3, 1],
+]
