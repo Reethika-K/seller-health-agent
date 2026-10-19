@@ -2,61 +2,70 @@ import pandas as pd
 from ahp_config import METRICS
 
 HIGHER_IS_BETTER = {"listing_quality_score", "ad_return", "avg_rating", "sla_compliance"}
+ALL_METRICS = [m for metrics in METRICS.values() for m in metrics]
 
-# Level order: 0 = Healthy, 1 = Watch, 2 = At-risk, 3 = Critical
-LEVELS = ["Healthy", "Watch", "At-risk", "Critical"]
+RECENT_DAYS = 7            # "now" = the last 7 days
+BASELINE_DAYS = 21         # compared with the 21 days before that
+CUT_QUANTILES = [0.85, 0.95, 0.99]    # Watch / At-risk / Critical cut-offs
+REFERENCE_END_DAYS = range(28, 39)    # early, healthy period used to learn the cut-offs
 
 
-def build_thresholds(platform):
-    """For every metric, return 3 cut-offs (Watch, At-risk, Critical) learned from
-    the platform's own early data, before any seller has started to decline."""
+def load_daily(platform):
     df = pd.read_csv(f"{platform}_data/seller_daily_metrics.csv", parse_dates=["date"])
-    df = df.sort_values(["seller_id", "date"])
+    return df.sort_values(["seller_id", "date"])
 
-    # Scoring compares 7-day averages, so build the cut-offs from 7-day averages too
-    cols = [c for c in df.columns if c not in ("seller_id", "date", "order_volume")]
-    for m in cols:
-        df[m] = df.groupby("seller_id")[m].transform(
-            lambda s: s.rolling(7, min_periods=3).mean())
 
+def load_tiers(platform):
+    """Seller size tier (Small / Medium / Large) - a General-category attribute."""
+    return pd.read_csv(f"{platform}_data/sellers.csv").set_index("seller_id")["size_tier"]
+
+
+def window_mean(df, end, days):
+    """Average of every metric per seller over the `days` days ending on `end`."""
+    end = pd.Timestamp(end)
+    w = df[(df.date > end - pd.Timedelta(days=days)) & (df.date <= end)]
+    return w.groupby("seller_id")[ALL_METRICS].mean()
+
+
+def worsening(df, end):
+    """How much worse the last 7 days are than the seller's own previous 21 days.
+    Positive = got worse, for every metric."""
+    end = pd.Timestamp(end)
+    recent = window_mean(df, end, RECENT_DAYS)
+    base = window_mean(df, end - pd.Timedelta(days=RECENT_DAYS), BASELINE_DAYS)
+    change = recent - base
+    for m in HIGHER_IS_BETTER:
+        change[m] = -change[m]       # for "higher is better" metrics, a drop is worse
+    return change
+
+
+def build_thresholds(df, tiers):
+    """Learn, per size tier and per metric, how much worsening is normal.
+    Returns th[tier][metric] = [watch_cut, at_risk_cut, critical_cut]."""
     start = df.date.min()
-    ref = df[(df.date >= start + pd.Timedelta(days=6)) &
-             (df.date < start + pd.Timedelta(days=25))]
-
+    windows = [worsening(df, start + pd.Timedelta(days=d)).assign(tier=tiers)
+               for d in REFERENCE_END_DAYS]
+    ref = pd.concat(windows)
     th = {}
-    for cat, metrics in METRICS.items():
-        for m in metrics:
-            if m in HIGHER_IS_BETTER:          # bad values are LOW
-                qs = [0.25, 0.10, 0.03]
-            else:                              # bad values are HIGH
-                qs = [0.75, 0.90, 0.97]
-            th[m] = ref[m].quantile(qs).tolist()
+    for tier in ["Small", "Medium", "Large"]:
+        sub = ref[ref.tier == tier]
+        th[tier] = {m: sub[m].quantile(CUT_QUANTILES).tolist() for m in ALL_METRICS}
     return th
 
 
-def metric_level(value, cuts, higher_is_better):
-    """Return 0 (Healthy), 1 (Watch), 2 (At-risk) or 3 (Critical).
-    The level is the number of cut-offs the value has crossed.
-    Returns None if the value is missing."""
-    if pd.isna(value):
+def metric_level(worse_by, cuts):
+    """0 = Healthy, 1 = Watch, 2 = At-risk, 3 = Critical
+    (the number of cut-offs the worsening has crossed). None if the value is missing."""
+    if pd.isna(worse_by):
         return None
-    if higher_is_better:
-        return sum(value < c for c in cuts)
-    return sum(value > c for c in cuts)
+    return sum(worse_by > c for c in cuts)
 
 
 if __name__ == "__main__":
-    th = build_thresholds("meesho")
-    print(f"{'metric':24s} {'Watch':>9s} {'At-risk':>9s} {'Critical':>9s}")
-    for m, cuts in th.items():
-        print(f"{m:24s} {cuts[0]:9.3f} {cuts[1]:9.3f} {cuts[2]:9.3f}")
-
-    print("\nlate_shipment_rate tests (expect 0, 1, 2, 3):")
-    for v in [0.05, 0.12, 0.17, 0.40]:
-        print(v, "->", metric_level(v, th["late_shipment_rate"], False))
-
-    print("\nlisting_quality_score tests (expect 0, 1, 2, 3):")
-    for v in [78, 69, 65, 55]:
-        print(v, "->", metric_level(v, th["listing_quality_score"], True))
-
-    print("\nmissing value ->", metric_level(float("nan"), th["avg_rating"], True))
+    df = load_daily("meesho")
+    th = build_thresholds(df, load_tiers("meesho"))
+    print("Small sellers: how much worse than their own baseline before it counts as Watch / At-risk / Critical")
+    for m in ALL_METRICS:
+        print(f"{m:24s}", [round(c, 3) for c in th["Small"][m]])
+    print("\nmetric_level(0.30, [0.10, 0.20, 0.25]) ->", metric_level(0.30, [0.10, 0.20, 0.25]), "(expect 3)")
+    print("metric_level(0.05, [0.10, 0.20, 0.25]) ->", metric_level(0.05, [0.10, 0.20, 0.25]), "(expect 0)")
