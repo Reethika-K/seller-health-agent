@@ -1,0 +1,201 @@
+seller_id,category,join_date,size_tier
+S0001,Skincare,2022-05-23,Medium
+S0002,Makeup,2023-04-23,Small
+S0003,Haircare,2026-03-17,Medium
+S0004,Skincare,2022-09-27,Medium
+S0005,Skincare,2025-12-19,Medium
+S0006,Personal Care & Wellness,2024-05-04,Large
+S0007,Skincare,2024-12-19,Small
+S0008,Skincare,2024-07-25,Medium
+S0009,Personal Care & Wellness,2021-01-24,Medium
+S0010,Haircare,2023-04-25,Medium
+S0011,Makeup,2024-07-30,Medium
+S0012,Makeup,2023-10-24,Small
+S0013,Haircare,2022-07-26,Medium
+S0014,Skincare,2022-08-05,Large
+S0015,Skincare,2022-02-07,Small
+S0016,Fragrance,2021-05-14,Small
+S0017,Haircare,2021-08-04,Small
+S0018,Makeup,2021-11-05,Medium
+S0019,Fragrance,2023-02-10,Large
+S0020,Makeup,2024-04-29,Small
+S0021,Personal Care & Wellness,2024-05-04,Large
+S0022,Skincare,2024-05-29,Medium
+S0023,Makeup,2023-12-25,Small
+S0024,Makeup,2021-06-02,Medium
+S0025,Makeup,2022-11-10,Small
+S0026,Haircare,2024-04-15,Medium
+S0027,Skincare,2022-02-21,Medium
+S0028,Fragrance,2022-02-06,Small
+S0029,Personal Care & Wellness,2025-08-13,Small
+S0030,Skincare,2025-12-01,Large
+S0031,Makeup,2024-01-21,Medium
+S0032,Skincare,2023-12-26,Medium
+S0033,Skincare,2026-03-01,Medium
+S0034,Personal Care & Wellness,2023-08-20,Medium
+S0035,Makeup,2023-03-12,Large
+S0036,Skincare,2022-01-20,Small
+S0037,Haircare,2023-04-07,Small
+S0038,Skincare,2021-09-07,Medium
+S0039,Personal Care & Wellness,2023-12-31,Medium
+S0040,Skincare,2025-08-05,Small
+S0041,Skincare,2022-07-03,Small
+S0042,Skincare,2023-02-02,Small
+S0043,Makeup,2023-10-26,Medium
+S0044,Makeup,2023-01-09,Medium
+S0045,Personal Care & Wellness,2025-03-27,Medium
+S0046,Haircare,2025-08-07,Small
+S0047,Makeup,2024-08-21,Small
+S0048,Skincare,2021-12-02,Medium
+S0049,Skincare,2022-01-03,Large
+S0050,Personal Care & Wellness,2023-06-07,Large
+S0051,Makeup,2024-12-18,Medium
+S0052,Haircare,2021-03-25,Large
+S0053,Skincare,2021-03-01,Large
+S0054,Skincare,2025-05-30,Medium
+S0055,Fragrance,2022-09-17,Medium
+S0056,Haircare,2023-08-02,Medium
+S0057,Makeup,2021-10-01,Small
+S0058,Makeup,2024-09-02,Medium
+S0059,Skincare,2023-10-20,Small
+S0060,Skincare,2022-12-14,Medium
+S0061,Skincare,2022-11-30,Large
+S0062,Fragrance,2023-02-20,Large
+S0063,Makeup,2025-01-01,Medium
+S0064,Skincare,2023-08-27,Small
+S0065,Haircare,2021-06-28,Large
+S0066,Skincare,2024-08-31,Large
+S0067,Skincare,2025-03-08,Large
+S0068,Haircare,2023-09-13,Medium
+S0069,Personal Care & Wellness,2023-12-01,Medium
+S0070,Skincare,2024-05-29,Medium
+S0071,Fragrance,2021-01-14,Small
+S0072,Skincare,2021-08-12,Small
+S0073,Skincare,2025-11-06,Medium
+S0074,Skincare,2023-12-05,Small
+S0075,Skincare,2022-12-18,Medium
+S0076,Haircare,2023-11-08,Medium
+S0077,Makeup,2021-03-05,Medium
+S0078,Personal Care & Wellness,2025-01-08,Large
+S0079,Skincare,2021-05-29,Small
+S0080,Makeup,2025-01-17,Medium
+S0081,Skincare,2021-08-29,Small
+S0082,Personal Care & Wellness,2021-04-09,Large
+S0083,Personal Care & Wellness,2025-01-12,Medium
+S0084,Makeup,2024-09-21,Small
+S0085,Makeup,2025-11-18,Small
+S0086,Makeup,2021-09-25,Medium
+S0087,Haircare,2025-07-11,Medium
+S0088,Skincare,2023-03-18,Small
+S0089,Skincare,2024-08-19,Small
+S0090,Makeup,2021-02-16,Medium
+S0091,Skincare,2022-12-07,Medium
+S0092,Fragrance,2025-07-13,Medium
+S0093,Haircare,2022-04-12,Large
+S0094,Makeup,2021-05-04,Large
+S0095,Haircare,2023-05-12,Large
+S0096,Haircare,2022-04-02,Medium
+S0097,Fragrance,2022-07-18,Medium
+S0098,Personal Care & Wellness,2023-05-10,Medium
+S0099,Skincare,2022-01-24,Medium
+S0100,Haircare,2022-08-05,Medium
+S0101,Skincare,2025-06-14,Small
+S0102,Makeup,2022-07-09,Medium
+S0103,Fragrance,2023-05-30,Small
+S0104,Personal Care & Wellness,2023-12-31,Small
+S0105,Fragrance,2023-03-09,Medium
+S0106,Skincare,2022-12-30,Medium
+S0107,Makeup,2025-09-30,Medium
+S0108,Skincare,2025-03-08,Medium
+S0109,Personal Care & Wellness,2022-03-29,Medium
+S0110,Skincare,2026-04-20,Small
+S0111,Skincare,2025-10-18,Small
+S0112,Makeup,2022-10-08,Medium
+S0113,Skincare,2025-05-13,Medium
+S0114,Personal Care & Wellness,2023-11-10,Large
+S0115,Haircare,2022-02-17,Medium
+S0116,Skincare,2021-07-14,Medium
+S0117,Makeup,2021-12-18,Small
+S0118,Skincare,2024-12-28,Small
+S0119,Haircare,2024-09-08,Medium
+S0120,Skincare,2022-01-02,Small
+S0121,Skincare,2022-03-13,Small
+S0122,Skincare,2021-02-04,Small
+S0123,Makeup,2022-06-07,Medium
+S0124,Haircare,2021-07-28,Small
+S0125,Makeup,2024-03-29,Medium
+S0126,Haircare,2021-03-20,Large
+S0127,Makeup,2024-08-22,Medium
+S0128,Skincare,2025-07-23,Small
+S0129,Makeup,2023-06-17,Medium
+S0130,Makeup,2025-07-11,Small
+S0131,Personal Care & Wellness,2026-03-09,Medium
+S0132,Skincare,2025-03-09,Small
+S0133,Skincare,2024-05-23,Medium
+S0134,Makeup,2024-06-19,Small
+S0135,Personal Care & Wellness,2026-04-28,Medium
+S0136,Personal Care & Wellness,2025-10-17,Medium
+S0137,Haircare,2025-10-11,Medium
+S0138,Skincare,2025-08-09,Large
+S0139,Fragrance,2022-04-17,Medium
+S0140,Haircare,2026-04-26,Medium
+S0141,Skincare,2024-08-28,Medium
+S0142,Makeup,2021-05-20,Small
+S0143,Skincare,2024-06-12,Large
+S0144,Fragrance,2024-06-20,Medium
+S0145,Haircare,2022-06-05,Large
+S0146,Fragrance,2023-01-15,Large
+S0147,Fragrance,2025-02-06,Large
+S0148,Skincare,2023-12-19,Small
+S0149,Fragrance,2023-10-05,Small
+S0150,Skincare,2022-05-30,Small
+S0151,Skincare,2024-03-04,Medium
+S0152,Makeup,2022-01-25,Medium
+S0153,Makeup,2024-02-05,Medium
+S0154,Skincare,2024-05-08,Medium
+S0155,Haircare,2024-08-20,Medium
+S0156,Haircare,2023-07-13,Small
+S0157,Skincare,2023-11-06,Medium
+S0158,Haircare,2025-11-21,Small
+S0159,Makeup,2024-03-25,Small
+S0160,Haircare,2024-11-16,Medium
+S0161,Skincare,2023-09-26,Medium
+S0162,Fragrance,2025-03-20,Medium
+S0163,Makeup,2021-09-05,Small
+S0164,Makeup,2024-10-02,Large
+S0165,Haircare,2023-08-22,Small
+S0166,Makeup,2024-08-31,Small
+S0167,Skincare,2023-04-27,Small
+S0168,Personal Care & Wellness,2023-04-26,Small
+S0169,Skincare,2024-05-20,Large
+S0170,Makeup,2024-08-15,Small
+S0171,Makeup,2022-09-07,Large
+S0172,Skincare,2024-08-27,Small
+S0173,Skincare,2023-12-15,Small
+S0174,Fragrance,2021-12-07,Medium
+S0175,Fragrance,2026-04-15,Small
+S0176,Haircare,2026-05-09,Medium
+S0177,Personal Care & Wellness,2023-11-11,Small
+S0178,Fragrance,2026-05-22,Medium
+S0179,Skincare,2023-05-25,Small
+S0180,Haircare,2026-02-09,Small
+S0181,Makeup,2025-04-13,Large
+S0182,Haircare,2021-09-30,Small
+S0183,Makeup,2023-08-16,Small
+S0184,Skincare,2022-12-31,Medium
+S0185,Personal Care & Wellness,2025-04-29,Large
+S0186,Haircare,2022-06-28,Small
+S0187,Haircare,2025-07-11,Medium
+S0188,Makeup,2021-04-02,Medium
+S0189,Fragrance,2025-12-27,Medium
+S0190,Makeup,2025-03-29,Medium
+S0191,Makeup,2021-06-27,Small
+S0192,Skincare,2021-06-15,Small
+S0193,Makeup,2025-04-17,Medium
+S0194,Fragrance,2025-02-09,Medium
+S0195,Haircare,2021-02-26,Large
+S0196,Fragrance,2023-08-14,Medium
+S0197,Makeup,2022-09-02,Medium
+S0198,Personal Care & Wellness,2022-09-29,Small
+S0199,Skincare,2023-03-24,Large
+S0200,Personal Care & Wellness,2022-02-12,Medium
