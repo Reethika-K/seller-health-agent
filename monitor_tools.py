@@ -5,13 +5,13 @@ The type hints and docstrings matter: Gemini reads them to know how to call each
 """
 import pandas as pd
 
-from ahp_config import CATEGORIES, METRICS, NYKAA, PLATFORM_MATRICES
+from ahp_config import CATEGORIES, METRICS, MEESHO, PLATFORM_MATRICES
 from levels import (ALL_METRICS, HIGHER_IS_BETTER, build_thresholds, load_daily,
                     load_tiers, metric_level, worsening)
 from scoring import get_weights, level_scores, score_sellers
 
-PLATFORM = "nykaa"          # set this before running the agent
-MATRICES = NYKAA            # the AHP matrices for that platform
+PLATFORM = "meesho"          # set this before running the agent
+MATRICES = MEESHO            # the AHP matrices for that platform
 LEVEL_NAMES = ["Healthy", "Watch", "At-risk", "Critical"]
 FLAG_SCORE = 0.35            # a category at or below this is "flagged"
 CANDIDATE_SCORE = 0.60       # categories at or below this are shown for context

@@ -1,0 +1,45 @@
+[
+  {
+    "seller_id": "S0065",
+    "as_of_date": "2026-09-08",
+    "primary_category": "Marketing",
+    "secondary_categories": [
+      "Customer Experience"
+    ],
+    "estimated_onset_date": "2026-08-16",
+    "decline_speed": "gradual",
+    "priority": "P1",
+    "owner_team": "Catalog and ads team",
+    "first_contact_within_days": 2,
+    "internal_summary": "Seller S0065 shows declining marketing metrics due to degraded catalog content and rising content concerns that are hurting ad efficiency and return rates. The account manager should prompt the seller to audit their top listings and correct any inaccurate claims or images.",
+    "actions": [
+      {
+        "action": "Contact the seller about the marketing problem and offer support",
+        "owner": "platform_team",
+        "due_in_days": 2
+      },
+      {
+        "action": "Audit top listings by order volume and restore accurate images, titles, and required attributes.",
+        "owner": "seller",
+        "due_in_days": 3
+      },
+      {
+        "action": "Review listings with content concerns, correct any unverified claims, and pause underperforming ad campaigns.",
+        "owner": "seller",
+        "due_in_days": 7
+      }
+    ],
+    "seller_message": {
+      "subject": "Important update regarding your product listings and ad efficiency",
+      "body": "Hello, we noticed that your product listing quality and advertising returns have recently decreased, which appears to be linked to some content accuracy issues and mismatched product descriptions. To help improve customer satisfaction and sales, please audit your top listings by order volume to ensure your images and attributes are accurate, and review any items with recent content notices. We are here to help if you have any questions or need guidance on updating your catalog."
+    },
+    "metrics_to_recheck": [
+      "listing_quality_score",
+      "content_flag_count",
+      "ad_return",
+      "return_rate"
+    ],
+    "escalate_if": "Listing quality and ad returns continue to fall after seven days despite completed catalog updates.",
+    "attempts_needed": 2
+  }
+]
