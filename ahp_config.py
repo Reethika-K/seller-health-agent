@@ -38,3 +38,40 @@ LEVEL_MATRIX = [
     [1/5, 1/3, 1,   3],
     [1/9, 1/5, 1/3, 1],
 ]
+# ---- Nykaa: Marketing and Inventory matter most ----
+NYKAA = {
+    "categories": [
+        [1,   2,   2,   3,   4,   1],
+        [1/2, 1,   1,   2,   3,   1/2],
+        [1/2, 1,   1,   2,   3,   1/2],
+        [1/3, 1/2, 1/2, 1,   2,   1/3],
+        [1/4, 1/3, 1/3, 1/2, 1,   1/4],
+        [1,   2,   2,   3,   4,   1],
+    ],
+    "Marketing": [[1, 2, 3], [1/2, 1, 2], [1/3, 1/2, 1]],
+    "Customer Experience": [[1, 1, 2, 3], [1, 1, 2, 3], [1/2, 1/2, 1, 2], [1/3, 1/3, 1/2, 1]],
+    "Logistics":      [[1, 2],   [1/2, 1]],
+    "Seller support": [[1, 1/2], [2, 1]],
+    "Finance":        [[1, 3],   [1/3, 1]],
+    "Inventory":      [[1, 1],   [1, 1]],
+}
+
+# ---- Instamart: Logistics and Inventory matter most ----
+INSTAMART = {
+    "categories": [
+        [1,   1/3, 1/2, 1,   3, 1/3],
+        [3,   1,   2,   3,   5, 1],
+        [2,   1/2, 1,   2,   4, 1/2],
+        [1,   1/3, 1/2, 1,   2, 1/3],
+        [1/3, 1/5, 1/4, 1/2, 1, 1/5],
+        [3,   1,   2,   3,   5, 1],
+    ],
+    "Marketing": [[1, 2, 2], [1/2, 1, 1], [1/2, 1, 1]],
+    "Customer Experience": [[1, 1, 2, 3], [1, 1, 2, 3], [1/2, 1/2, 1, 2], [1/3, 1/3, 1/2, 1]],
+    "Logistics":      [[1, 3],   [1/3, 1]],
+    "Seller support": [[1, 1/2], [2, 1]],
+    "Finance":        [[1, 3],   [1/3, 1]],
+    "Inventory":      [[1, 3],   [1/3, 1]],
+}
+
+PLATFORM_MATRICES = {"meesho": MEESHO, "nykaa": NYKAA, "instamart": INSTAMART}

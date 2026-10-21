@@ -1,3 +1,4 @@
+import sys 
 import pandas as pd
 from ahp_config import METRICS
 
@@ -62,8 +63,8 @@ def metric_level(worse_by, cuts):
 
 
 if __name__ == "__main__":
-    df = load_daily("meesho")
-    th = build_thresholds(df, load_tiers("meesho"))
+    df = load_daily("nykaa")
+    th = build_thresholds(df, load_tiers("nykaa"))
     print("Small sellers: how much worse than their own baseline before it counts as Watch / At-risk / Critical")
     for m in ALL_METRICS:
         print(f"{m:24s}", [round(c, 3) for c in th["Small"][m]])
