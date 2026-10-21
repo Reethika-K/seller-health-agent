@@ -1,0 +1,31 @@
+[
+  {
+    "seller_id": "S0065",
+    "primary_category": "Marketing",
+    "secondary_categories": [
+      "Customer Experience"
+    ],
+    "estimated_onset_date": "2026-08-16",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": true,
+    "summary": "Seller S0065 is experiencing a critical decline driven by degrading listing quality and inaccurate catalog content, which triggered rising content flags and severely depressed ad return. Because listings no longer accurately describe the products being sold, buyer dissatisfaction surged a week later, resulting in plummeting ratings, increased returns, and a significant drop in overall order volume.",
+    "root_causes": [
+      {
+        "cause": "Content accuracy degradation / Listing quality failure",
+        "confidence": "high",
+        "evidence": [
+          "listing_quality_score dropped from a previous 21-day average of 47.45 down to 30.4",
+          "content_flag_count increased from 5.67 to 9.43 per day",
+          "ad_return fell from 1.55 to 0.94",
+          "daily order volume declined from 51.6 to 35.4"
+        ],
+        "knowledge_docs": [
+          "MKT-02",
+          "MKT-01",
+          "MKT-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "This category's issues are knock-on effects of the primary Marketing issue. The timeline tool shows that Marketing issues began around August 16, whereas Customer Experience issues started shortly after around August 22, directly matching the cascading pattern described in the knowledge base where degraded or inaccurate listings cause buyers to receive items that do not match descriptions, leading to negative reviews and higher returns."
+  }
+]
