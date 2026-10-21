@@ -1,7 +1,7 @@
 {
   "platform": "meesho",
   "as_of_date": "2026-09-08",
-  "summary": "Investigations into multiple sellers revealed that marketing issues, such as declining listing quality and poor ad returns, frequently catalyzed severe customer experience degradation including higher return rates and negative reviews. Additionally, some sellers suffered from inventory strains and significant support slowdowns.",
+  "summary": "Investigations into multiple sellers reveal that declining listing quality and weaker marketing performance frequently trigger customer dissatisfaction, negative reviews, and higher return rates. Operational strains such as inventory stockouts and delayed support response times further exacerbate buyer friction.",
   "alerts": [
     {
       "seller_id": "S0065",
@@ -12,15 +12,15 @@
         "Customer Experience"
       ],
       "evidence": [
-        "listing_quality_score 30.4 vs 47.452",
-        "content_flag_count 9.429 vs 5.667",
-        "ad_return 0.936 vs 1.547",
-        "avg_rating 2.593 vs 3.794",
-        "return_rate 0.349 vs 0.131",
-        "negative_review_rate 0.493 vs 0.126",
-        "complaint_count 3.143 vs 1.524"
+        "listing_quality_score 30.4 vs 47.452 before",
+        "content_flag_count 9.429 vs 5.667 before",
+        "ad_return 0.936 vs 1.547 before",
+        "avg_rating 2.593 vs 3.794 before",
+        "return_rate 0.349 vs 0.131 before",
+        "negative_review_rate 0.493 vs 0.126 before",
+        "complaint_count 3.143 vs 1.524 before"
       ],
-      "reasoning": "Listing quality deteriorated significantly alongside an increase in content flags and a drop in ad return. The plummet in customer ratings and surge in return and complaint rates indicate that the marketing issues directly degraded customer experience.",
+      "reasoning": "Listing quality degradation and content flags drove down advertising efficiency, which likely caused poor buyer experiences and a surge in negative reviews and returns. The customer experience issues represent a direct knock-on effect of failing marketing and listing standards.",
       "investigated": true
     },
     {
@@ -32,14 +32,14 @@
         "Inventory"
       ],
       "evidence": [
-        "avg_rating 2.531 vs 3.539",
-        "return_rate 0.475 vs 0.318",
-        "negative_review_rate 0.495 vs 0.197",
-        "complaint_count 9.429 vs 3.667",
-        "stockout_rate 0.051 vs 0.022",
-        "expiry_damage_rate 0 vs 0.007"
+        "avg_rating 2.531 vs 3.539 before",
+        "return_rate 0.475 vs 0.318 before",
+        "negative_review_rate 0.495 vs 0.197 before",
+        "complaint_count 9.429 vs 3.667 before",
+        "stockout_rate 0.051 vs 0.022 before",
+        "expiry_damage_rate 0 vs 0.007 before"
       ],
-      "reasoning": "Severe customer dissatisfaction manifested through plunging ratings and spiking complaints and return rates. The secondary inventory issue (elevated stockout rate) suggests supply chain strain that likely contributed to poor customer fulfillment and subsequent complaints.",
+      "reasoning": "Severe buyer dissatisfaction manifested as plunging ratings and rising complaints, alongside elevated stockout rates. The inventory stockouts contributed to fulfillment friction and heightened customer frustration.",
       "investigated": true
     },
     {
@@ -52,15 +52,15 @@
         "Seller support"
       ],
       "evidence": [
-        "listing_quality_score 44.067 vs 49.32",
-        "content_flag_count 4.714 vs 5.524",
-        "ad_return 0.732 vs 0.943",
-        "avg_rating 1.925 vs 2.889",
-        "return_rate 0.581 vs 0.372",
-        "negative_review_rate 0.723 vs 0.355",
-        "complaint_count 2.286 vs 0.952"
+        "listing_quality_score 44.067 vs 49.32 before",
+        "content_flag_count 4.714 vs 5.524 before",
+        "ad_return 0.732 vs 0.943 before",
+        "avg_rating 1.925 vs 2.889 before",
+        "return_rate 0.581 vs 0.372 before",
+        "negative_review_rate 0.723 vs 0.355 before",
+        "complaint_count 2.286 vs 0.952 before"
       ],
-      "reasoning": "Sub-par ad returns and declining listing quality coincided with severe customer feedback degradation, including very high return and negative review rates. This points to mismatched customer expectations driven by poor listing presentation.",
+      "reasoning": "A sharp deterioration in listing quality and diminished ad returns preceded collapsing customer ratings and skyrocketing return rates. This indicates that poor marketing alignment severely damaged buyer satisfaction.",
       "investigated": true
     },
     {
@@ -73,15 +73,15 @@
         "Seller support"
       ],
       "evidence": [
-        "listing_quality_score 39.371 vs 45.052",
-        "content_flag_count 2.857 vs 2.571",
-        "ad_return 1.823 vs 2.196",
-        "avg_rating 2.154 vs 2.681",
-        "return_rate 0.542 vs 0.393",
-        "negative_review_rate 0.639 vs 0.391",
-        "complaint_count 1 vs 0.381"
+        "listing_quality_score 39.371 vs 45.052 before",
+        "content_flag_count 2.857 vs 2.571 before",
+        "ad_return 1.823 vs 2.196 before",
+        "avg_rating 2.154 vs 2.681 before",
+        "return_rate 0.542 vs 0.393 before",
+        "negative_review_rate 0.639 vs 0.391 before",
+        "complaint_count 1 vs 0.381 before"
       ],
-      "reasoning": "Marketing performance weakened across listing quality and advertising returns. The resulting customer experience deterioration (higher return rates and negative reviews) appears to be a direct knock-on effect of sub-optimal marketing execution.",
+      "reasoning": "Declining listing quality and weaker ad returns weakened promotional effectiveness, triggering secondary customer dissatisfaction with higher return rates and negative reviews.",
       "investigated": true
     },
     {
@@ -93,13 +93,13 @@
         "Seller support"
       ],
       "evidence": [
-        "listing_quality_score 53.107 vs 54.118",
-        "content_flag_count 1.429 vs 1.381",
-        "ad_return 1.184 vs 1.472",
-        "avg_response_hours 10.179 vs 4.107",
-        "sla_compliance 0.625 vs 1"
+        "listing_quality_score 53.107 vs 54.118 before",
+        "content_flag_count 1.429 vs 1.381 before",
+        "ad_return 1.184 vs 1.472 before",
+        "avg_response_hours 10.179 vs 4.107 before",
+        "sla_compliance 0.625 vs 1 before"
       ],
-      "reasoning": "Marketing efficiency declined moderately while seller support metrics experienced a major slowdown in response times and lower SLA compliance. The support breakdown is likely an operational strain compounding the seller's overall decline.",
+      "reasoning": "Slumping listing quality and falling ad returns impaired overall marketing performance. Meanwhile, delayed support response times and dropped SLA compliance reflect internal operational strain.",
       "investigated": true
     },
     {
@@ -111,15 +111,15 @@
         "Customer Experience"
       ],
       "evidence": [
-        "listing_quality_score 46.029 vs 62.459",
-        "content_flag_count 3 vs 1.571",
-        "ad_return 1.367 vs 1.926",
-        "avg_rating 3.486 vs 3.881",
-        "return_rate 0.308 vs 0.098",
-        "negative_review_rate 0.195 vs 0.091",
-        "complaint_count 0.286 vs 0"
+        "listing_quality_score 46.029 vs 62.459 before",
+        "content_flag_count 3 vs 1.571 before",
+        "ad_return 1.367 vs 1.926 before",
+        "avg_rating 3.486 vs 3.881 before",
+        "return_rate 0.308 vs 0.098 before",
+        "negative_review_rate 0.195 vs 0.091 before",
+        "complaint_count 0.286 vs 0 before"
       ],
-      "reasoning": "A sharp drop in listing quality and a rise in content flags indicate deteriorating catalog standards. This marketing failure spilled over into customer experience, driving up return rates and complaints.",
+      "reasoning": "A severe drop in listing quality paired with rising content flags and lower ad returns created friction. This directly spilled over into customer experience, causing a threefold increase in the return rate.",
       "investigated": true
     },
     {

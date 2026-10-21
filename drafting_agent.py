@@ -31,6 +31,7 @@ from pydantic import BaseModel, Field, ValidationError, model_validator
 
 import kb
 import monitor_tools as mt
+from ahp_config import METRICS
 from levels import ALL_METRICS
 
 load_dotenv()
@@ -178,7 +179,8 @@ def grounding_docs(diag):
 def draft(diag, cand, as_of):
     rules = rules_for(cand)
     task = (f"Seller {diag['seller_id']} on {mt.PLATFORM}, as of {as_of}.\n"
-            f"Primary category: {diag['primary_category']}. Secondary: {diag['secondary_categories'] or 'none'}.\n"
+            f"Primary category: {diag['primary_category']}. Clear secondary: {diag['secondary_categories'] or 'none'}. "
+            f"Weak signals, do not mention as problems: {diag.get('weak_secondary_signals') or 'none'}.\n"
             f"Decline started about {diag['estimated_onset_date']} and is {diag['decline_speed']}.\n"
             f"Secondary is a knock-on effect: {diag['secondary_is_knock_on']}.\n"
             f"Priority {rules['priority']}. Owner team: {rules['owner_team']}.\n\n"
@@ -195,6 +197,9 @@ def draft(diag, cand, as_of):
         resp = _generate(contents=contents, config=config)
         try:
             n = DraftNarrative.model_validate_json(resp.text)
+            # secondary categories are re-checked too: add their two most important metrics (a rule, not wording)
+            for cat in diag["secondary_categories"]:
+                n.metrics_to_recheck += [m for m in METRICS[cat][:2] if m not in n.metrics_to_recheck]
             contact = Action(action=f"Contact the seller about the {diag['primary_category'].lower()} problem "
                                     f"and offer support", owner="platform_team",
                              due_in_days=rules["first_contact_within_days"])
