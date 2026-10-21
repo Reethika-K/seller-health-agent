@@ -1,8 +1,9 @@
+import sys 
 import numpy as np
 import pandas as pd
 
 from ahp import ahp_weights
-from ahp_config import CATEGORIES, METRICS, LEVEL_MATRIX, MEESHO
+from ahp_config import CATEGORIES, METRICS, LEVEL_MATRIX, NYKAA
 from levels import (ALL_METRICS, build_thresholds, load_daily, load_tiers,
                     metric_level, worsening)
 
@@ -106,9 +107,9 @@ def evaluate(platform, alerts):
 
 
 if __name__ == "__main__":
-    platform = "meesho"
+    platform = "nykaa"
     print("level scores:", level_scores().round(3))
-    alerts = run_weekly(platform, MEESHO)
+    alerts = run_weekly(platform, NYKAA)
     print(f"\n{len(alerts)} alerts raised. Highest priority first:")
     print(alerts.sort_values("overall").head(10).to_string(index=False))
     print()

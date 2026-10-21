@@ -165,17 +165,12 @@ def evaluate(report):
 
 
 if __name__ == "__main__":
-    as_of = sys.argv[1] if len(sys.argv) > 1 else "2026-09-08"
-    if "--rules" in sys.argv:
-        r = tools.get_flagged_candidates(as_of)
-        print(f"{r['confirmed']} confirmed, {r['watch']} watch")
-        for c in r["candidates"]:
-            if c["status"] == "confirmed":
-                print(c["seller_id"], c["severity"], c["primary_category"], list(c["secondary_categories"]))
-        sys.exit()
+    as_of = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else "2026-09-08"
+    if "--platform" in sys.argv:
+        tools.set_platform(sys.argv[sys.argv.index("--platform") + 1])
 
     print("Phase 1: investigating with tools...")
-    findings = investigate(as_of)
+    findings = investigate(as_of)   
     print(findings, "\n")
     print("Phase 2: structuring the findings...")
     narrative = structure(findings)
