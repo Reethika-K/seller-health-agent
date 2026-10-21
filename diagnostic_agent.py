@@ -156,7 +156,7 @@ def investigate(cand, as_of):
         automatic_function_calling=types.AutomaticFunctionCallingConfig(maximum_remote_calls=MAX_TOOL_CALLS))
     task = (f"Platform {mt.PLATFORM}, as of {as_of}. Diagnose seller {cand['seller_id']} "
             f"({cand['size_tier']} seller). Primary category: {cand['primary_category']} "
-            f"(flagged {cand['primary_consecutive_weeks']} weeks in a row, severity {cand['severity']}). "
+            f"(flagged in {cand['primary_consecutive_weeks']} recent weekly runs, severity {cand['severity']}). "
             f"Secondary categories: {list(cand['secondary_categories']) or 'none'}.")
     print("   asking Gemini to investigate...", flush=True)
     return _generate(contents=task, config=config).text
