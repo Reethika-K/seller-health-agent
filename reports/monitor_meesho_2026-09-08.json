@@ -1,7 +1,7 @@
 {
   "platform": "meesho",
   "as_of_date": "2026-09-08",
-  "summary": "The findings analyze six declining sellers suffering from various marketing, inventory, logistics, and support issues that directly impacted customer experience and ratings. Common trends include increased returns, complaints, and negative review rates across multiple accounts.",
+  "summary": "Investigations into multiple sellers reveal that declining listing quality and weaker marketing performance frequently trigger customer dissatisfaction, negative reviews, and higher return rates. Operational strains such as inventory stockouts and delayed support response times further exacerbate buyer friction.",
   "alerts": [
     {
       "seller_id": "S0065",
@@ -20,7 +20,7 @@
         "negative_review_rate 0.493 vs 0.126 before",
         "complaint_count 3.143 vs 1.524 before"
       ],
-      "reasoning": "Marketing deterioration drove down listing quality and ad returns while spiking content flags, creating a direct knock-on effect of poor customer ratings, increased returns, and complaints.",
+      "reasoning": "Listing quality degradation and content flags drove down advertising efficiency, which likely caused poor buyer experiences and a surge in negative reviews and returns. The customer experience issues represent a direct knock-on effect of failing marketing and listing standards.",
       "investigated": true
     },
     {
@@ -39,26 +39,28 @@
         "stockout_rate 0.051 vs 0.022 before",
         "expiry_damage_rate 0 vs 0.007 before"
       ],
-      "reasoning": "Severe customer dissatisfaction and soaring complaints appear closely tied to inventory stockout issues that disrupted order fulfillment and product availability.",
+      "reasoning": "Severe buyer dissatisfaction manifested as plunging ratings and rising complaints, alongside elevated stockout rates. The inventory stockouts contributed to fulfillment friction and heightened customer frustration.",
       "investigated": true
     },
     {
       "seller_id": "S0011",
       "status": "confirmed",
       "severity": "Critical",
-      "primary_category": "Customer Experience",
+      "primary_category": "Marketing",
       "secondary_categories": [
+        "Customer Experience",
         "Seller support"
       ],
       "evidence": [
+        "listing_quality_score 44.067 vs 49.32 before",
+        "content_flag_count 4.714 vs 5.524 before",
+        "ad_return 0.732 vs 0.943 before",
         "avg_rating 1.925 vs 2.889 before",
         "return_rate 0.581 vs 0.372 before",
         "negative_review_rate 0.723 vs 0.355 before",
-        "complaint_count 2.286 vs 0.952 before",
-        "avg_response_hours 8.001 vs 6.458 before",
-        "sla_compliance 0.633 vs 0.944 before"
+        "complaint_count 2.286 vs 0.952 before"
       ],
-      "reasoning": "Collapsing customer ratings and heavy returns overwhelmed support channels, leading to a significant drop in seller support SLA compliance and slower response times.",
+      "reasoning": "A sharp deterioration in listing quality and diminished ad returns preceded collapsing customer ratings and skyrocketing return rates. This indicates that poor marketing alignment severely damaged buyer satisfaction.",
       "investigated": true
     },
     {
@@ -79,7 +81,25 @@
         "negative_review_rate 0.639 vs 0.391 before",
         "complaint_count 1 vs 0.381 before"
       ],
-      "reasoning": "Weakening marketing and ad returns signaled sub-par product presentation, which directly triggered negative customer reviews, higher returns, and formal complaints.",
+      "reasoning": "Declining listing quality and weaker ad returns weakened promotional effectiveness, triggering secondary customer dissatisfaction with higher return rates and negative reviews.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0106",
+      "status": "confirmed",
+      "severity": "Critical",
+      "primary_category": "Marketing",
+      "secondary_categories": [
+        "Seller support"
+      ],
+      "evidence": [
+        "listing_quality_score 53.107 vs 54.118 before",
+        "content_flag_count 1.429 vs 1.381 before",
+        "ad_return 1.184 vs 1.472 before",
+        "avg_response_hours 10.179 vs 4.107 before",
+        "sla_compliance 0.625 vs 1 before"
+      ],
+      "reasoning": "Slumping listing quality and falling ad returns impaired overall marketing performance. Meanwhile, delayed support response times and dropped SLA compliance reflect internal operational strain.",
       "investigated": true
     },
     {
@@ -97,9 +117,9 @@
         "avg_rating 3.486 vs 3.881 before",
         "return_rate 0.308 vs 0.098 before",
         "negative_review_rate 0.195 vs 0.091 before",
-        "complaint_count 0.286 vs 0"
+        "complaint_count 0.286 vs 0 before"
       ],
-      "reasoning": "A sharp decline in marketing performance and content flags preceded a surge in product returns and a dip in customer satisfaction scores.",
+      "reasoning": "A severe drop in listing quality paired with rising content flags and lower ad returns created friction. This directly spilled over into customer experience, causing a threefold increase in the return rate.",
       "investigated": true
     },
     {
@@ -111,15 +131,10 @@
         "Customer Experience"
       ],
       "evidence": [
-        "late_shipment_rate 0.268 vs 0.105 before",
-        "cancellation_rate 0.164 vs 0.044 before",
-        "avg_rating 3.763 vs 4.148 before",
-        "return_rate 0.154 vs 0.115 before",
-        "negative_review_rate 0.111 vs 0.053 before",
-        "complaint_count 3 vs 1.476 before"
+        "Logistics sub-score 0.197 (flagged 2 week(s) in a row)"
       ],
-      "reasoning": "Major fulfillment breakdowns—evidenced by spiking late shipments and cancellations—directly caused customer complaints and lower ratings as buyers faced delivery delays.",
-      "investigated": true
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
     },
     {
       "seller_id": "S0166",
@@ -256,6 +271,46 @@
       "investigated": false
     },
     {
+      "seller_id": "S0148",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Logistics",
+      "secondary_categories": [
+        "Seller support"
+      ],
+      "evidence": [
+        "Logistics sub-score 0.204 (flagged 2 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0179",
+      "status": "confirmed",
+      "severity": "Critical",
+      "primary_category": "Finance",
+      "secondary_categories": [],
+      "evidence": [
+        "Finance sub-score 0.086 (flagged 3 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0023",
+      "status": "confirmed",
+      "severity": "Critical",
+      "primary_category": "Seller support",
+      "secondary_categories": [
+        "Finance"
+      ],
+      "evidence": [
+        "Seller support sub-score 0.123 (flagged 2 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
       "seller_id": "S0198",
       "status": "confirmed",
       "severity": "Critical",
@@ -263,6 +318,18 @@
       "secondary_categories": [],
       "evidence": [
         "Inventory sub-score 0.104 (flagged 3 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0081",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Finance",
+      "secondary_categories": [],
+      "evidence": [
+        "Finance sub-score 0.315 (flagged 3 week(s) in a row)"
       ],
       "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
       "investigated": false
@@ -280,6 +347,18 @@
       "investigated": false
     },
     {
+      "seller_id": "S0001",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "Inventory sub-score 0.33 (flagged 2 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
       "seller_id": "S0145",
       "status": "confirmed",
       "severity": "At-risk",
@@ -287,18 +366,6 @@
       "secondary_categories": [],
       "evidence": [
         "Finance sub-score 0.315 (flagged 2 week(s) in a row)"
-      ],
-      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
-      "investigated": false
-    },
-    {
-      "seller_id": "S0106",
-      "status": "watch",
-      "severity": "Watch",
-      "primary_category": "Seller support",
-      "secondary_categories": [],
-      "evidence": [
-        "Seller support sub-score 0.197 (flagged 1 week(s) in a row)"
       ],
       "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
       "investigated": false
@@ -338,18 +405,6 @@
       "secondary_categories": [],
       "evidence": [
         "Customer Experience sub-score 0.186 (flagged 1 week(s) in a row)"
-      ],
-      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
-      "investigated": false
-    },
-    {
-      "seller_id": "S0148",
-      "status": "watch",
-      "severity": "Watch",
-      "primary_category": "Seller support",
-      "secondary_categories": [],
-      "evidence": [
-        "Seller support sub-score 0.197 (flagged 1 week(s) in a row)"
       ],
       "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
       "investigated": false
@@ -410,6 +465,30 @@
       "secondary_categories": [],
       "evidence": [
         "Customer Experience sub-score 0.291 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0174",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Customer Experience",
+      "secondary_categories": [],
+      "evidence": [
+        "Customer Experience sub-score 0.269 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0125",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "Inventory sub-score 0.33 (flagged 1 week(s) in a row)"
       ],
       "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
       "investigated": false

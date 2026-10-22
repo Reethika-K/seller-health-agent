@@ -5,24 +5,27 @@ The type hints and docstrings matter: Gemini reads them to know how to call each
 """
 import pandas as pd
 
-from ahp_config import CATEGORIES, METRICS, NYKAA, PLATFORM_MATRICES
+from ahp_config import CATEGORIES, METRICS, PLATFORM_MATRICES
 from levels import (ALL_METRICS, HIGHER_IS_BETTER, build_thresholds, load_daily,
                     load_tiers, metric_level, worsening)
 from scoring import get_weights, level_scores, score_sellers
 
-PLATFORM = "nykaa"          # set this before running the agent
-MATRICES = NYKAA            # the AHP matrices for that platform
+PLATFORM = "meesho"          # the platform being analysed (change it with set_platform)
+MATRICES = PLATFORM_MATRICES[PLATFORM]    # the AHP matrices for that platform
 LEVEL_NAMES = ["Healthy", "Watch", "At-risk", "Critical"]
 FLAG_SCORE = 0.35            # a category at or below this is "flagged"
 CANDIDATE_SCORE = 0.60       # categories at or below this are shown for context
 
 _state = {}                  # loaded once, reused by every tool call
 _score_cache = {}
-def set_platform(name):
-    """Switch every tool to another platform (meesho, nykaa or instamart)."""
+
+
+def set_platform(name: str):
+    """Switch to another platform (meesho, nykaa, instamart): its matrices, data and cached scores."""
     global PLATFORM, MATRICES
-    PLATFORM = name.lower()
-    MATRICES = PLATFORM_MATRICES[PLATFORM]
+    if name not in PLATFORM_MATRICES:
+        raise ValueError(f"unknown platform {name!r}; choose from {list(PLATFORM_MATRICES)}")
+    PLATFORM, MATRICES = name, PLATFORM_MATRICES[name]
     _state.clear()
     _score_cache.clear()
 
@@ -53,15 +56,25 @@ def _flagged(row, limit):
             if not pd.isna(row[c]) and row[c] <= limit}
 
 
-def _weeks_flagged(tables, seller, cat):
-    """How many consecutive weekly runs (counting back from now) the category has been flagged."""
-    n = 0
+def _episode(tables, seller, cat):
+    """Flagged weekly runs in the category's current episode, counting back from now.
+
+    One unflagged week in between is allowed, because a noisy week can lift a score above the
+    line while the problem is still there. Two unflagged weeks in a row end the episode.
+    Returns (number of flagged runs, score at the most recent flagged run or None)."""
+    count, gap, last_score = 0, 0, None
     for t in tables:                       # tables[0] = now, tables[1] = one week ago, ...
         v = t.loc[seller, cat]
-        if pd.isna(v) or v > FLAG_SCORE:
-            break
-        n += 1
-    return n
+        if not pd.isna(v) and v <= FLAG_SCORE:
+            count += 1
+            gap = 0
+            if last_score is None:
+                last_score = round(float(v), 3)
+        else:
+            gap += 1
+            if gap >= 2:
+                break
+    return count, last_score
 
 
 def get_flagged_candidates(as_of_date: str) -> dict:
@@ -92,18 +105,21 @@ def get_flagged_candidates(as_of_date: str) -> dict:
         flagged = _flagged(r, FLAG_SCORE)
         if not flagged:
             continue
-        weeks = {c: _weeks_flagged(tables, seller, c) for c in flagged}
-        primary = min(flagged, key=lambda c: (-weeks[c], flagged[c]))
-        status = "confirmed" if weeks[primary] >= 2 else "watch"
+        episodes = {c: _episode(tables, seller, c) for c in CATEGORIES}
+        active = {c: e for c, e in episodes.items() if e[0] >= 1}       # flagged in this episode
+        primary = min(active, key=lambda c: (-active[c][0], c not in flagged,
+                                             flagged.get(c, active[c][1])))
+        weeks, primary_score = active[primary]
+        status = "confirmed" if weeks >= 2 else "watch"
         if status == "watch":
             severity = "Watch"
         else:
-            severity = "Critical" if flagged[primary] < 0.15 else "At-risk"
+            severity = "Critical" if primary_score < 0.15 else "At-risk"
         rows.append({
             "seller_id": seller, "size_tier": _load()["tiers"][seller],
             "status": status, "severity": severity,
-            "primary_category": primary, "primary_score": flagged[primary],
-            "primary_consecutive_weeks": weeks[primary],
+            "primary_category": primary, "primary_score": primary_score,
+            "primary_consecutive_weeks": weeks,
             "secondary_categories": {c: flagged[c] for c in flagged if c != primary},
             "overall_score": round(float(r["overall"]), 3)})
     rows.sort(key=lambda x: (x["status"] != "confirmed", x["overall_score"]))

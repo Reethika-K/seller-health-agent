@@ -1,0 +1,251 @@
+{
+  "platform": "meesho",
+  "as_of_date": "2026-09-08",
+  "monitoring_summary": "26 confirmed declining sellers and 20 on watch on meesho as of 2026-09-08. Main problem areas among confirmed sellers: Marketing (12), Logistics (5), Finance (4), Inventory (3), Customer Experience (1), Seller support (1).",
+  "monitoring_notes_from_llm": "Investigations into multiple sellers reveal that declining listing quality and weaker marketing performance frequently trigger customer dissatisfaction, negative reviews, and higher return rates. Operational strains such as inventory stockouts and delayed support response times further exacerbate buyer friction.",
+  "confirmed_sellers": 26,
+  "diagnosed": 5,
+  "drafted": 5,
+  "failures": [],
+  "action_plans": [
+    {
+      "seller_id": "S0011",
+      "as_of_date": "2026-09-08",
+      "primary_category": "Marketing",
+      "secondary_categories": [
+        "Customer Experience"
+      ],
+      "estimated_onset_date": "2026-08-04",
+      "decline_speed": "gradual",
+      "priority": "P1",
+      "owner_team": "Catalog and ads team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0011 is experiencing a critical decline driven by degrading catalog content and inaccurate listings within Marketing. This drop in listing quality and rise in content issues has reduced advertising efficiency, causing a secondary knock-on deterioration in Customer Experience with plunging ratings and soaring return rates.",
+      "actions": [
+        {
+          "action": "Contact the seller about the marketing problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Review the affected listings, correct claims and images, and re-submit them.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Audit the top listings by order volume, restore images and required attributes, and stop bulk uploads.",
+          "owner": "seller",
+          "due_in_days": 7
+        },
+        {
+          "action": "Pause the worst-performing ads and move the budget to the best listings by conversion.",
+          "owner": "seller",
+          "due_in_days": 10
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding your catalog and customer experience",
+        "body": "Hello, we have noticed that your product listing quality appears to have dropped recently, which seems to be impacting your advertising results and customer feedback. To help improve performance, please review your affected listings to correct claims and images, and audit your top products to restore any missing details. We are here to support you if you need any help with this process."
+      },
+      "metrics_to_recheck": [
+        "listing_quality_score",
+        "content_flag_count",
+        "ad_return",
+        "return_rate",
+        "avg_rating"
+      ],
+      "escalate_if": "Escalate if the listing quality score continues to drop further and return rates remain elevated after 14 days following the content updates.",
+      "attempts_needed": 2
+    },
+    {
+      "seller_id": "S0065",
+      "as_of_date": "2026-09-08",
+      "primary_category": "Marketing",
+      "secondary_categories": [
+        "Customer Experience"
+      ],
+      "estimated_onset_date": "2026-08-16",
+      "decline_speed": "gradual",
+      "priority": "P1",
+      "owner_team": "Catalog and ads team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0065 is experiencing a marketing decline driven by degrading catalog content, rising content accuracy issues, and falling ad efficiency. This root issue caused a knock-on deterioration in Customer Experience, resulting in higher return rates. The account manager should work with the seller to audit listings, correct claims, and pause underperforming ads.",
+      "actions": [
+        {
+          "action": "Contact the seller about the marketing problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Audit the top listings by order volume, restore images and required attributes, and stop bulk uploads until the template is checked.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Review the listings with content issues, correct claims and images, and re-submit them.",
+          "owner": "seller",
+          "due_in_days": 5
+        },
+        {
+          "action": "Pause the worst-performing ads, move the budget to the best listings by conversion, and review price against comparable products.",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding your product listings and marketing efficiency",
+        "body": "Hello, we have noticed that your product listing quality appears to have dropped recently, which is affecting your order volume and advertising efficiency. We also see that this may be contributing to higher return rates from buyers. To help improve your performance, please audit your top listings by order volume to restore missing images and required attributes. Additionally, please review your current product descriptions to ensure all details are accurate and pause any lower-performing advertisements. Please reach out if you need assistance with these steps."
+      },
+      "metrics_to_recheck": [
+        "listing_quality_score",
+        "content_flag_count",
+        "ad_return",
+        "return_rate",
+        "avg_rating"
+      ],
+      "escalate_if": "If the listing quality score drops further below 25 or return rates continue to rise after two weeks of implementing corrections, this will need escalation to the Catalog and ads team lead.",
+      "attempts_needed": 2
+    },
+    {
+      "seller_id": "S0106",
+      "as_of_date": "2026-09-08",
+      "primary_category": "Marketing",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-07-31",
+      "decline_speed": "gradual",
+      "priority": "P1",
+      "owner_team": "Catalog and ads team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0106 is experiencing a gradual decline driven by deteriorating catalog content, falling listing quality scores, and rising content accuracy flags starting around July 31, 2026. This degradation has directly reduced advertising return and search visibility. The account manager should guide the seller to audit listings, restore required attributes, and pause poor-performing ads.",
+      "actions": [
+        {
+          "action": "Contact the seller about the marketing problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Audit the top listings by order volume, restore images and required attributes, and stop bulk uploads until the template is checked.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Review the flagged listings, correct claims and images, and re-submit them while checking the latest policy notice.",
+          "owner": "seller",
+          "due_in_days": 7
+        },
+        {
+          "action": "Pause the worst-performing ads, move the budget to the best listings by conversion, and review pricing against comparable products.",
+          "owner": "seller",
+          "due_in_days": 10
+        }
+      ],
+      "seller_message": {
+        "subject": "Update on your catalog and advertising performance",
+        "body": "Hello. We have noticed that your product listing quality appears to have dropped recently, which is also affecting your advertising return. To help improve your visibility and sales, we recommend auditing your top listings to restore missing images and required attributes, reviewing any recent content updates, and pausing lower-performing advertisements while focusing budget on your best-converting items. Please reach out if you need assistance with updating your listings."
+      },
+      "metrics_to_recheck": [
+        "listing_quality_score",
+        "content_flag_count",
+        "ad_return",
+        "return_rate"
+      ],
+      "escalate_if": "Listing quality score continues to drop below 45 or content flags continue to rise after two weeks of corrective actions.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0161",
+      "as_of_date": "2026-09-08",
+      "primary_category": "Customer Experience",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-08-27",
+      "decline_speed": "sudden",
+      "priority": "P1",
+      "owner_team": "Customer experience team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0161 has experienced a sudden drop in customer experience since August 27, driven by high return rates, a sharp decline in average ratings, and rising customer complaints while order volumes remain stable. The account manager should guide the seller to review return reasons, analyze customer complaints by category, and isolate affected product stock to address potential quality or fulfillment defects.",
+      "actions": [
+        {
+          "action": "Contact the seller about the customer experience problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Read the return reasons for the last two weeks, group them by defective, wrong item, or not as described, and quarantine suspect stock.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Group the last two weeks of complaints by reason, answer the oldest open ones first, and fix the largest reason group.",
+          "owner": "seller",
+          "due_in_days": 5
+        },
+        {
+          "action": "Break the low reviews down by listing and by date, and respond publicly to the main complaints.",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding recent buyer feedback and orders",
+        "body": "Hello, we have noticed that your buyer ratings and return rates have seen some unexpected changes recently while your order volume has remained steady. To help you get things back on track quickly, we recommend looking into your recent return reasons and customer complaints to see if a specific product batch or packing error may be causing the issue. Please take a moment to review your recent returns, group the feedback by reason, and quarantine any suspect items while you investigate. We are here to support you, so please reach out if you need any assistance."
+      },
+      "metrics_to_recheck": [
+        "avg_rating",
+        "return_rate",
+        "negative_review_rate",
+        "complaint_count"
+      ],
+      "escalate_if": "The seller fails to take action on quarantined stock and customer complaints within 7 days, leading to further acceleration of negative reviews and returns.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0086",
+      "as_of_date": "2026-09-08",
+      "primary_category": "Marketing",
+      "secondary_categories": [
+        "Customer Experience"
+      ],
+      "estimated_onset_date": "2026-08-09",
+      "decline_speed": "gradual",
+      "priority": "P2",
+      "owner_team": "Catalog and ads team",
+      "first_contact_within_days": 7,
+      "internal_summary": "Seller S0086 shows a gradual primary decline in Marketing starting around August 9, 2026, driven by degraded catalog content, rising content accuracy flags, and falling advertising returns. This content deterioration caused a knock-on effect in Customer Experience by mid-August, resulting in mismatched product descriptions, increased returns, and lower ratings.",
+      "actions": [
+        {
+          "action": "Review the flagged listings, correct claims and images, and re-submit them while checking the latest policy notices.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Contact the seller about the marketing problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 7
+        },
+        {
+          "action": "Audit the top listings by order volume, restore missing images and required attributes, and pause bulk uploads until templates are verified.",
+          "owner": "seller",
+          "due_in_days": 7
+        },
+        {
+          "action": "Pause the worst-performing ads, reallocate budget to the best converting listings, and review pricing against comparable products.",
+          "owner": "seller",
+          "due_in_days": 10
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding your product listings and customer experience",
+        "body": "Hello. We have noticed that your product listing quality appears to have dropped recently, which may be affecting your advertising returns and customer satisfaction. To help turn this around, we recommend reviewing your product listings to ensure descriptions, images, and claims are accurate, and pausing any underperforming ads while moving budget to your best-selling items. Please let us know if you need any help with this process and we will be happy to assist you."
+      },
+      "metrics_to_recheck": [
+        "listing_quality_score",
+        "content_flag_count",
+        "ad_return",
+        "return_rate",
+        "avg_rating"
+      ],
+      "escalate_if": "Escalate if listing quality scores continue to fall and return rates worsen further after the seller has been given time to update their catalog content.",
+      "attempts_needed": 1
+    }
+  ]
+}

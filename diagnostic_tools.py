@@ -28,6 +28,7 @@ NOISE_K = 3.0         # a metric is elevated when it is this many noise-widths a
 REACH = 0.8           # "reached its current level" = 80% of it
 MIN_EFFECT = 4.0      # ignore metrics whose change is small relative to their noise
 SUDDEN_DAYS = 5       # reaching 80% within this many days of onset counts as sudden
+CLEAR_DAYS = 7        # a signal counts as established only if it began at least this many days ago
 WEEKS = 8
 
 
@@ -67,13 +68,15 @@ def category_facts(seller_id, category, as_of):
     found = [x for x in (metric_timeline(seller_id, m, as_of) for m in METRICS[category]) if x]
     strong = [x for x in found if x["strength"] >= MIN_EFFECT]
     if not found:
-        return {"elevated_metrics": [], "estimated_onset_date": None, "decline_speed": "unclear"}
+        return {"elevated_metrics": [], "estimated_onset_date": None, "decline_speed": "unclear",
+                "clear_signal": False}
     use = strong or [max(found, key=lambda x: x["strength"])]
     onset = min(x["onset_date"] for x in use)                     # earliest of the clear signals
+    established = bool(strong) and pd.Timestamp(onset) <= as_of - pd.Timedelta(days=CLEAR_DAYS)
     days = float(np.median([x["days_to_80_percent"] for x in use]))
     speed = "sudden" if days <= SUDDEN_DAYS else "gradual"
     return {"elevated_metrics": found, "estimated_onset_date": onset,
-            "median_days_to_80_percent": days, "decline_speed": speed}
+            "median_days_to_80_percent": days, "decline_speed": speed, "clear_signal": established}
 
 
 def get_category_timeline(seller_id: str, category: str, as_of_date: str) -> dict:

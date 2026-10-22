@@ -5,19 +5,91 @@
     "secondary_categories": [
       "Customer Experience"
     ],
+    "weak_secondary_signals": [],
     "estimated_onset_date": "2026-08-16",
     "decline_speed": "gradual",
     "secondary_is_knock_on": true,
-    "summary": "Seller S0065 is experiencing a critical decline driven by degrading listing quality and inaccurate catalog content, which triggered rising content flags and severely depressed ad return. Because listings no longer accurately describe the products being sold, buyer dissatisfaction surged a week later, resulting in plummeting ratings, increased returns, and a significant drop in overall order volume.",
+    "summary": "Seller S0065 is experiencing a critical decline originating in Marketing, driven by degrading catalog content, rising content accuracy flags, and falling ad efficiency. This root issue directly caused a knock-on deterioration in Customer Experience, as buyers received items that did not match their listings, triggering a sharp spike in return rates and negative reviews.",
     "root_causes": [
       {
-        "cause": "Content accuracy degradation / Listing quality failure",
+        "cause": "Catalog Content Degradation and Inaccurate Listings",
         "confidence": "high",
         "evidence": [
-          "listing_quality_score dropped from a previous 21-day average of 47.45 down to 30.4",
-          "content_flag_count increased from 5.67 to 9.43 per day",
-          "ad_return fell from 1.55 to 0.94",
-          "daily order volume declined from 51.6 to 35.4"
+          "listing_quality_score dropped to 30.4 (down from 47.45)",
+          "content_flag_count rose to 9.4 (up from 5.7)",
+          "ad_return fell to 0.94 (down from 1.55)"
+        ],
+        "knowledge_docs": [
+          "MKT-01",
+          "MKT-02",
+          "MKT-03"
+        ]
+      },
+      {
+        "cause": "Uncompetitive or Mismatched Product Advertising Efficiency",
+        "confidence": "medium",
+        "evidence": [
+          "ad_return declined steadily over the past several weeks (reaching 0.936) alongside worsening listing scores"
+        ],
+        "knowledge_docs": [
+          "MKT-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "The clear secondary category is Customer Experience. Based on the category timelines, Marketing started declining first on August 16, 2026, whereas Customer Experience metrics began worsening around August 22\u201326, 2026. Therefore, Customer Experience is a clear knock-on effect of the primary Marketing deterioration."
+  },
+  {
+    "seller_id": "S0161",
+    "primary_category": "Customer Experience",
+    "secondary_categories": [],
+    "weak_secondary_signals": [
+      "Inventory"
+    ],
+    "estimated_onset_date": "2026-08-27",
+    "decline_speed": "sudden",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0161 is experiencing a critical decline in Customer Experience driven primarily by product quality defects, bad batches, or fulfillment errors. This is evidenced by a severe drop in buyer ratings and a surge in return rates, negative reviews, and customer complaints while order volumes remained stable.",
+    "root_causes": [
+      {
+        "cause": "Product quality defect or bad batch / Damaged or wrong items shipped",
+        "confidence": "high",
+        "evidence": [
+          "Average rating dropped sharply from a healthy baseline of 3.539 to 2.531",
+          "Return rate increased from 0.318 to 0.475",
+          "Negative review rate surged from 0.197 to 0.495",
+          "Daily complaint count rose from 3.667 to 9.429",
+          "Order volume remained stable around ~60 orders per day"
+        ],
+        "knowledge_docs": [
+          "CX-01",
+          "CX-02",
+          "CX-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories identified for seller S0161. The inventory signal noted as a weak signal is noise and does not form part of the primary root cause."
+  },
+  {
+    "seller_id": "S0011",
+    "primary_category": "Marketing",
+    "secondary_categories": [
+      "Customer Experience"
+    ],
+    "weak_secondary_signals": [
+      "Seller support"
+    ],
+    "estimated_onset_date": "2026-08-04",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": true,
+    "summary": "Seller S0011 is experiencing a critical decline driven by degrading catalog content and inaccurate listings within Marketing, which started around August 4, 2026. This drop in listing quality and rise in content flags has reduced advertising efficiency and user trust, causing a secondary knock-on deterioration in Customer Experience starting August 13, 2026, characterized by plunging ratings and soaring return rates.",
+    "root_causes": [
+      {
+        "cause": "Catalog Content Degradation and Inaccurate Listings",
+        "confidence": "high",
+        "evidence": [
+          "listing_quality_score dropped to 44.07 (Critical level) over the last 7 days compared to 49.32 previously",
+          "content_flag_count rose to 4.71 per day",
+          "ad_return fell to 0.73 (Watch level)"
         ],
         "knowledge_docs": [
           "MKT-02",
@@ -26,6 +98,94 @@
         ]
       }
     ],
-    "secondary_assessment": "This category's issues are knock-on effects of the primary Marketing issue. The timeline tool shows that Marketing issues began around August 16, whereas Customer Experience issues started shortly after around August 22, directly matching the cascading pattern described in the knowledge base where degraded or inaccurate listings cause buyers to receive items that do not match descriptions, leading to negative reviews and higher returns."
+    "secondary_assessment": "The Customer Experience metrics are clear knock-on effects of the primary Marketing failure. The timeline shows that Marketing degradation began on 2026-08-04, whereas Customer Experience metrics began to deteriorate later on 2026-08-13. As listing quality fell and content flags rose, buyers received items that did not match expectations, directly driving down ratings and driving up returns and negative reviews."
+  },
+  {
+    "seller_id": "S0086",
+    "primary_category": "Marketing",
+    "secondary_categories": [
+      "Customer Experience"
+    ],
+    "weak_secondary_signals": [
+      "Seller support"
+    ],
+    "estimated_onset_date": "2026-08-09",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": true,
+    "summary": "Seller S0086 is experiencing a primary decline in Marketing driven by degraded catalog content, rising content accuracy flags, and falling advertising returns. This content deterioration began around August 9, 2026, and directly triggered a downstream knock-on effect in Customer Experience by mid-August, leading to mismatched product descriptions, increased returns, and lower customer ratings.",
+    "root_causes": [
+      {
+        "cause": "Catalog content degradation and inaccurate listings",
+        "confidence": "high",
+        "evidence": [
+          "listing_quality_score dropped significantly to 39.371 (Critical level)",
+          "content_flag_count rose to 2.857 (Watch level)",
+          "ad_return fell to 1.823 (At-risk level)"
+        ],
+        "knowledge_docs": [
+          "MKT-02",
+          "MKT-01",
+          "MKT-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "The timeline analysis shows that Marketing metrics began declining around August 9, 2026 (listing_quality_score), whereas Customer Experience metrics (negative_review_rate, avg_rating) started deteriorating shortly after around August 18, 2026. This confirms that the Customer Experience issues (rising negative reviews, falling average ratings, and rising return rates) are direct knock-on effects of degraded listing quality and inaccurate content, which caused customer expectations to mismatch delivered items."
+  },
+  {
+    "seller_id": "S0040",
+    "primary_category": "Marketing",
+    "secondary_categories": [
+      "Customer Experience"
+    ],
+    "estimated_onset_date": "2026-08-14",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": true,
+    "summary": "Seller S0040 is experiencing a critical decline in marketing performance driven by degraded catalog content and rising content accuracy flags, which began in mid-August. This poor listing quality reduced ad efficiency and failed to accurately represent the products. Consequently, this created a downstream knock-on effect in early September where buyers received mismatched items, resulting in a severe spike in customer returns and a sharp drop in overall ratings.",
+    "root_causes": [
+      {
+        "cause": "Inaccurate Catalog Content and Misleading Listings",
+        "confidence": "high",
+        "evidence": [
+          "listing_quality_score has dropped significantly to a critical level of 46.029 (compared to a previous baseline of 62.459)",
+          "content_flag_count has risen to a critical level of 3 (up from 1.571)",
+          "ad_return has degraded to 1.367 (down from 1.926)"
+        ],
+        "knowledge_docs": [
+          "MKT-02",
+          "MKT-01",
+          "MKT-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "The Customer Experience issues are clearly a knock-on effect of the primary Marketing failures. The Marketing deterioration started on August 14, 2026, followed by rising content flags on August 17. In contrast, the Customer Experience metrics did not begin deteriorating until September 2, 2026, leading to subsequent drops in avg_rating and higher negative reviews because mismatched or poorly described listings caused buyers to receive items that did not match their expectations, driving up returns and complaints."
+  },
+  {
+    "seller_id": "S0106",
+    "primary_category": "Marketing",
+    "secondary_categories": [],
+    "weak_secondary_signals": [
+      "Seller support"
+    ],
+    "estimated_onset_date": "2026-07-31",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0106 is experiencing a critical decline driven primarily by deteriorating catalog content and a falling listing quality score starting around July 31, 2026. This degradation has directly reduced advertising return and led to content flags, which subsequently impairs conversion and search visibility despite stable order volumes.",
+    "root_causes": [
+      {
+        "cause": "Catalog content degradation and inaccurate content claims",
+        "confidence": "high",
+        "evidence": [
+          "listing_quality_score dropped from a healthy baseline to 53.107 (onset date July 31, 2026)",
+          "ad_return fell to 1.184",
+          "content_flag_count rose to 1.429"
+        ],
+        "knowledge_docs": [
+          "MKT-01",
+          "MKT-02",
+          "MKT-03"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories flagged, and the weak signal in Seller Support appears to be isolated noise rather than a primary driver. However, the decline in listing quality and rising content flags are known to cause knock-on effects such as decreased buyer satisfaction as mismatched descriptions lead to poor customer experiences."
   }
 ]

@@ -75,7 +75,10 @@ secondary categories.
 HOW TO WORK
 1. Call get_seller_snapshot once. Note which metrics moved AND which did not move. Metrics that
    stayed flat are evidence too, for example flat stockouts make a stock problem unlikely.
-2. Call get_category_timeline for the primary category, and for each secondary category.
+2. Call get_category_timeline for the primary category, and for each clear secondary category.
+   Movements in any other category are weak signals: small sellers have noisy averages. Do not use
+   them as evidence or causes, and do not mention them as problems, unless a timeline call for that
+   category shows a clear onset.
 3. Call search_knowledge with category set to the primary category. Write the query as one or two
    plain sentences describing the pattern, for example "Orders are shipped late while order volume
    and stock levels are normal". Do not paste lists of metric names, and avoid negations like "flat"
@@ -107,8 +110,9 @@ class DiagnosisNarrative(BaseModel):
 class Diagnosis(BaseModel):
     seller_id: str
     primary_category: str
-    secondary_categories: List[str]
     # decided by code
+    secondary_categories: List[str]         # secondary categories with a clear, established signal
+    weak_secondary_signals: List[str]       # flagged secondaries without one (probably noise)
     estimated_onset_date: Optional[str]
     decline_speed: str
     secondary_is_knock_on: Optional[bool]
@@ -138,26 +142,33 @@ def code_facts(cand, as_of):
     """The exact facts, computed without the LLM."""
     d = pd.Timestamp(as_of)
     primary = dt.category_facts(cand["seller_id"], cand["primary_category"], d)
-    knock = None
+    clear, weak, knock = [], [], None
     for sec in cand["secondary_categories"]:
         f = dt.category_facts(cand["seller_id"], sec, d)
+        if not f["clear_signal"]:
+            weak.append(sec)               # flagged, but no established onset: probably noise
+            continue
+        clear.append(sec)
         if f["estimated_onset_date"] and primary["estimated_onset_date"]:
             gap = (pd.Timestamp(f["estimated_onset_date"]) - pd.Timestamp(primary["estimated_onset_date"])).days
             knock = bool(knock) or gap >= KNOCK_ON_GAP_DAYS
     return {"estimated_onset_date": primary["estimated_onset_date"],
             "decline_speed": primary["decline_speed"],
-            "secondary_is_knock_on": knock if cand["secondary_categories"] else None}
+            "secondary_categories": clear, "weak_secondary_signals": weak,
+            "secondary_is_knock_on": knock}
 
 
-def investigate(cand, as_of):
+def investigate(cand, as_of, facts):
     """Phase 1: the LLM calls the tools and searches the knowledge base."""
     config = types.GenerateContentConfig(
         system_instruction=SYSTEM, tools=TRACED_TOOLS, temperature=0,
         automatic_function_calling=types.AutomaticFunctionCallingConfig(maximum_remote_calls=MAX_TOOL_CALLS))
     task = (f"Platform {mt.PLATFORM}, as of {as_of}. Diagnose seller {cand['seller_id']} "
             f"({cand['size_tier']} seller). Primary category: {cand['primary_category']} "
-            f"(flagged {cand['primary_consecutive_weeks']} weeks in a row, severity {cand['severity']}). "
-            f"Secondary categories: {list(cand['secondary_categories']) or 'none'}.")
+            f"(flagged in {cand['primary_consecutive_weeks']} recent weekly runs, severity {cand['severity']}). "
+            f"Clear secondary categories: {facts['secondary_categories'] or 'none'}. "
+            f"Weak signals (probably noise, do not build a cause on them): "
+            f"{facts['weak_secondary_signals'] or 'none'}.")
     print("   asking Gemini to investigate...", flush=True)
     return _generate(contents=task, config=config).text
 
@@ -174,10 +185,9 @@ def structure(findings, seller_id):
 
 def diagnose(cand, as_of):
     facts = code_facts(cand, as_of)
-    findings = investigate(cand, as_of)
+    findings = investigate(cand, as_of, facts)
     n = structure(findings, cand["seller_id"])
-    return Diagnosis(seller_id=cand["seller_id"], primary_category=cand["primary_category"],
-                     secondary_categories=list(cand["secondary_categories"]), **facts,
+    return Diagnosis(seller_id=cand["seller_id"], primary_category=cand["primary_category"], **facts,
                      summary=n.summary, root_causes=n.root_causes,
                      secondary_assessment=n.secondary_assessment)
 
@@ -195,8 +205,8 @@ def evaluate(items):
             errs.append((pd.Timestamp(f["estimated_onset_date"]) - gt.loc[sid, "decline_start_date"]).days)
         speed_ok.append(f["decline_speed"] == gt.loc[sid, "decline_speed"])
         true_sec = gt.loc[sid, "secondary_category"]
-        if isinstance(true_sec, str) and true_sec in cand["secondary_categories"]:
-            kn.append(f["secondary_is_knock_on"] is True)
+        if isinstance(true_sec, str) and true_sec in cand["secondary_categories"]:   # reported by monitoring
+            kn.append(true_sec in f["secondary_categories"] and f["secondary_is_knock_on"] is True)
     print(f"\nEVALUATION as of {as_of_global}  ({len(speed_ok)} truly declining sellers diagnosed)")
     if errs:
         e = np.array(errs)
@@ -218,7 +228,8 @@ if __name__ == "__main__":
     for cand in cands:
         facts = code_facts(cand, as_of_global)
         evaluated.append((cand, facts))
-        print(f"{cand['seller_id']}  {cand['primary_category']:20s} secondary={list(cand['secondary_categories'])}")
+        print(f"{cand['seller_id']}  {cand['primary_category']:20s} secondary={facts['secondary_categories']} "
+              f"weak={facts['weak_secondary_signals']}")
         print(f"   onset {facts['estimated_onset_date']}  speed {facts['decline_speed']}  "
               f"secondary knock-on: {facts['secondary_is_knock_on']}")
         if facts_only:
