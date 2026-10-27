@@ -1,0 +1,151 @@
+[
+  {
+    "seller_id": "S0136",
+    "primary_category": "Inventory",
+    "secondary_categories": [],
+    "weak_secondary_signals": [],
+    "estimated_onset_date": "2026-08-02",
+    "decline_speed": "sudden",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0136 is experiencing a critical inventory breakdown characterized by a sharp rise in both stockouts and inventory expiry/damage rates while order volume remains steady. This indicates simultaneous demand forecasting errors and poor stock rotation, leading to missing stock on popular items and wasted overstock on others. Furthermore, inaccurate inventory visibility has caused a surge in order cancellations as customers purchase items that are no longer physically available to fulfill.",
+    "root_causes": [
+      {
+        "cause": "Overall Inventory Control Breakdown (Forecast Errors & Overstocking)",
+        "confidence": "high",
+        "evidence": [
+          "stockout_rate has risen to 0.12 (Critical) from 0.038",
+          "expiry_damage_rate has risen to 0.057 (Critical) from 0.008",
+          "order volume remained relatively stable (~19.9 orders/day vs 20.4)"
+        ],
+        "knowledge_docs": [
+          "INV-02"
+        ]
+      },
+      {
+        "cause": "Stock Count Mistakes leading to Unfulfillable Orders",
+        "confidence": "medium",
+        "evidence": [
+          "cancellation_rate has surged to 0.097 (Critical) from 0.039",
+          "sharp rise in stockout_rate (0.12)"
+        ],
+        "knowledge_docs": [
+          "INV-01"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories flagged for seller S0136; while logistics metrics like cancellation_rate are elevated, they appear directly tied to the primary inventory and stockout breakdown rather than being an independent logistics failure."
+  },
+  {
+    "seller_id": "S0160",
+    "primary_category": "Seller support",
+    "secondary_categories": [],
+    "weak_secondary_signals": [],
+    "estimated_onset_date": "2026-07-31",
+    "decline_speed": "sudden",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0160 is experiencing a critical breakdown in seller support performance, characterized by a sharp rise in average response times and a drop in SLA compliance. Because order volume remained steady, the decline stems from internal capacity constraints, staffing issues, or notification/tooling disruptions rather than a flood of buyer inquiries. Immediate management focus should be on checking notification settings, assigning dedicated support coverage, and clearing the backlog of unanswered messages.",
+    "root_causes": [
+      {
+        "cause": "Seller support capacity or staffing bottleneck / notification issue.",
+        "confidence": "high",
+        "evidence": [
+          "avg_response_hours surged to 32.907 hours (from a previous baseline of 8.674 hours)",
+          "sla_compliance dropped to 0.5 (from 0.75)",
+          "Order volume remained stable (6.1 orders/day vs 5.5 previously)"
+        ],
+        "knowledge_docs": [
+          "SUP-01",
+          "SUP-02"
+        ]
+      }
+    ],
+    "secondary_assessment": "None. Logistics shows a slight cancellation rate uptick to 0.089 from 0.029, but no clear secondary category was flagged or established as a widespread knock-on effect."
+  },
+  {
+    "seller_id": "S0114",
+    "primary_category": "Inventory",
+    "secondary_categories": [],
+    "weak_secondary_signals": [],
+    "estimated_onset_date": "2026-07-25",
+    "decline_speed": "gradual",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0114 is experiencing a critical inventory breakdown that began around July 25, 2026. The simultaneous rise in both stockouts and wastage points to poor inventory control\u2014overstocking slow-moving items while popular goods run out of stock.",
+    "root_causes": [
+      {
+        "cause": "Inventory Control Breakdown (Overstocking mixed with forecast/replenishment errors)",
+        "confidence": "high",
+        "evidence": [
+          "stockout_rate has risen significantly to 0.143 compared to 0.024 in the previous 21 days",
+          "expiry_damage_rate has jumped to 0.071 compared to 0.012 previously",
+          "order volume has remained stable (9 orders/day vs 8.4 orders/day)"
+        ],
+        "knowledge_docs": [
+          "INV-02"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories for this seller as all other categories such as Logistics, Customer Experience, Finance, Marketing, and Seller Support remain healthy."
+  },
+  {
+    "seller_id": "S0061",
+    "primary_category": "Seller support",
+    "secondary_categories": [],
+    "weak_secondary_signals": [],
+    "estimated_onset_date": "2026-08-04",
+    "decline_speed": "sudden",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0061 is experiencing a critical breakdown in Seller Support, characterized by an inability to answer buyer messages within required timeframes with sla_compliance at 0% and average response times jumping to 17.49 hours. Because all other operational areas remain stable and healthy, this issue stems directly from internal support constraints rather than being a knock-on effect of upstream fulfillment problems.",
+    "root_causes": [
+      {
+        "cause": "Staffing shortage or support capacity constraint",
+        "confidence": "high",
+        "evidence": [
+          "avg_response_hours rose significantly to 17.49 hours over the last 7 days (compared to 10.71 hours in the previous 21 days)",
+          "sla_compliance plummeted to 0%"
+        ],
+        "knowledge_docs": [
+          "SUP-01",
+          "SUP-02"
+        ]
+      },
+      {
+        "cause": "Notification or tooling disruption",
+        "confidence": "medium",
+        "evidence": [
+          "sudden drop to 0% SLA compliance and an abrupt increase in response times occurring concurrently with stable order volumes (averaging 3 orders/day)"
+        ],
+        "knowledge_docs": [
+          "SUP-01"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories or knock-on effects observed. All other categories remain healthy and stable, with customer metrics such as ratings and return rates actually improving or remaining completely unaffected."
+  },
+  {
+    "seller_id": "S0141",
+    "primary_category": "Seller support",
+    "secondary_categories": [],
+    "weak_secondary_signals": [],
+    "estimated_onset_date": "2026-07-29",
+    "decline_speed": "sudden",
+    "secondary_is_knock_on": null,
+    "summary": "Seller S0141 is experiencing a sharp decline in Seller Support performance, driven by a sudden drop in SLA compliance and an increase in response times starting around July 29, 2026. Because order volumes and all other operational metrics remain stable and healthy, this issue stems directly from internal support capacity constraints\u2014such as staffing gaps, missed notifications, or workflow bottlenecks\u2014rather than being a knock-on effect of other operational failures.",
+    "root_causes": [
+      {
+        "cause": "Staffing shortage, support workload, or tooling/notification breakdown",
+        "confidence": "high",
+        "evidence": [
+          "avg_response_hours increased from 13.762 hours (previous 21 days) to 18.817 hours (last 7 days)",
+          "sla_compliance dropped sharply from 0.617 to 0.083",
+          "Order volume remained stable (6.4 orders/day prior vs. 6.9 orders/day recently)"
+        ],
+        "knowledge_docs": [
+          "SUP-01",
+          "SUP-02",
+          "GEN-01"
+        ]
+      }
+    ],
+    "secondary_assessment": "There are no clear secondary categories for seller S0141; all other categories (Logistics, Customer Experience, Finance, Inventory, and Marketing) remain healthy with stable metrics."
+  }
+]

@@ -1,0 +1,216 @@
+{
+  "platform": "meesho",
+  "as_of_date": "2026-08-04",
+  "monitoring_summary": "5 confirmed declining sellers and 21 on watch on meesho as of 2026-08-04. Main problem areas among confirmed sellers: Seller support (3), Inventory (2).",
+  "monitoring_notes_from_llm": "On the Meesho platform as of 2026-08-04, there are 5 confirmed declining sellers and 21 watch candidates. The issues are heavily concentrated in Seller support and Inventory categories.",
+  "confirmed_sellers": 5,
+  "diagnosed": 5,
+  "drafted": 5,
+  "failures": [],
+  "action_plans": [
+    {
+      "seller_id": "S0114",
+      "as_of_date": "2026-08-04",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-07-25",
+      "decline_speed": "gradual",
+      "priority": "P1",
+      "owner_team": "Seller supply team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0114 is experiencing a critical inventory breakdown combining rising stockouts and wastage due to overstocking slow-moving items and replenishment errors. The account manager should guide the seller to count stock by expiry date, markdown near-expiry items, and enforce first-expiry-first-out discipline.",
+      "actions": [
+        {
+          "action": "Contact the seller about the inventory problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Count current stock by expiry date and identify items nearing expiration",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Mark down items that expire soon and enforce first-expiry-first-out discipline",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Update on your inventory management and stock levels",
+        "body": "Hello, we have noticed that your inventory management appears to be facing some challenges with stockouts and wastage recently. To help improve this, we recommend counting your current stock by expiry date, marking down items that expire soon, and ensuring a strict first-expiry-first-out process. Please let us know if you need any assistance with these steps."
+      },
+      "metrics_to_recheck": [
+        "stockout_rate",
+        "expiry_damage_rate"
+      ],
+      "escalate_if": "If stockout_rate and expiry_damage_rate continue to rise after 7 days without action from the seller.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0136",
+      "as_of_date": "2026-08-04",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-08-02",
+      "decline_speed": "sudden",
+      "priority": "P1",
+      "owner_team": "Seller supply team",
+      "first_contact_within_days": 2,
+      "internal_summary": "Seller S0136 is experiencing a critical inventory breakdown with rising stockouts, expiry damage, and order cancellations due to simultaneous demand forecasting errors and poor stock rotation. The account manager should guide the seller to count stock by expiry date, mark down near-expiry items, and de-list unfulfillable items immediately.",
+      "actions": [
+        {
+          "action": "Contact the seller about the inventory problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 2
+        },
+        {
+          "action": "Count stock by expiry date, mark down items that expire soon, and de-list items that cannot be fulfilled.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Place replenishment orders for top out-of-stock listings by past sales and enforce stock rotation disciplines.",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding your inventory and order fulfillment",
+        "body": "Hello. We have noticed that your inventory management and order fulfillment appear to be facing some challenges, with an increase in stock issues and order cancellations recently. To help resolve this, we recommend counting your stock by expiry date, marking down items that expire soon, and temporarily de-listing items that cannot currently be fulfilled. Please reach out if you need assistance as we are here to help your store succeed."
+      },
+      "metrics_to_recheck": [
+        "stockout_rate",
+        "expiry_damage_rate",
+        "cancellation_rate"
+      ],
+      "escalate_if": "If stockout_rate and cancellation_rate continue to rise after 7 days despite implementing inventory counts and markdowns.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0061",
+      "as_of_date": "2026-08-04",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-08-04",
+      "decline_speed": "sudden",
+      "priority": "P2",
+      "owner_team": "Seller support team",
+      "first_contact_within_days": 7,
+      "internal_summary": "Seller S0061 is experiencing a critical breakdown in seller support with SLA compliance dropping to 0% and average response times increasing to 17.49 hours. This issue stems from internal support constraints rather than upstream fulfillment problems. The account manager should assist the seller in verifying notification settings, assigning a backup responder, and addressing coverage gaps.",
+      "actions": [
+        {
+          "action": "Verify that notifications reach the right person and assign a backup responder.",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Contact the seller about the seller support problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 7
+        },
+        {
+          "action": "Set up an auto-reply with expected response times and add coverage for late time slots.",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Update on your buyer message response times",
+        "body": "Hello, we have noticed that your response times to buyer messages have increased recently and your response compliance has dropped. To help you get back on track, we recommend checking that your notification settings reach the right person, assigning a backup responder, and setting up an auto-reply with expected response times. Please let us know if you need any help with this."
+      },
+      "metrics_to_recheck": [
+        "avg_response_hours",
+        "sla_compliance",
+        "complaint_count"
+      ],
+      "escalate_if": "SLA compliance remains at 0% and average response times do not improve after implementing backup coverage and notification checks.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0141",
+      "as_of_date": "2026-08-04",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-07-29",
+      "decline_speed": "sudden",
+      "priority": "P2",
+      "owner_team": "Seller support team",
+      "first_contact_within_days": 7,
+      "internal_summary": "Seller S0141 shows a sudden drop in seller support performance starting around July 29, 2026, with average response times rising and SLA compliance falling significantly. Because order volumes and all other operational metrics remain stable, this issue is driven by internal support capacity constraints rather than broader operational failures.",
+      "actions": [
+        {
+          "action": "Check notification settings and ensure alerts reach the correct support staff member",
+          "owner": "seller",
+          "due_in_days": 3
+        },
+        {
+          "action": "Contact the seller about the seller support problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 7
+        },
+        {
+          "action": "Assign a backup responder and set up an auto-reply with expected response times",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Update on your buyer support response times",
+        "body": "Hello, we have noticed that your buyer support response times have increased recently while other operations remain steady. To help you get back on track, we recommend checking that your notifications are reaching the right person and setting up an auto-reply with expected response times. Please let us know if you need any assistance with this."
+      },
+      "metrics_to_recheck": [
+        "avg_response_hours",
+        "sla_compliance",
+        "complaint_count"
+      ],
+      "escalate_if": "SLA compliance drops further or response times continue to rise over the next seven days without corrective actions.",
+      "attempts_needed": 1
+    },
+    {
+      "seller_id": "S0160",
+      "as_of_date": "2026-08-04",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "estimated_onset_date": "2026-07-31",
+      "decline_speed": "sudden",
+      "priority": "P2",
+      "owner_team": "Seller support team",
+      "first_contact_within_days": 7,
+      "internal_summary": "Seller S0160 experienced a sudden drop in support performance with response times surging and SLA compliance falling while order volume remained stable. This indicates an internal staffing bottleneck, tooling issue, or notification disruption rather than an increase in buyer inquiries. Immediate actions should focus on verifying notification settings, clearing the message backlog, and adding coverage.",
+      "actions": [
+        {
+          "action": "Verify that notifications are reaching the right person and check notification settings.",
+          "owner": "seller",
+          "due_in_days": 2
+        },
+        {
+          "action": "Prioritize and clear all unanswered messages older than the SLA window.",
+          "owner": "seller",
+          "due_in_days": 4
+        },
+        {
+          "action": "Contact the seller about the seller support problem and offer support",
+          "owner": "platform_team",
+          "due_in_days": 7
+        },
+        {
+          "action": "Assign a backup responder and set up an auto-reply with expected response times.",
+          "owner": "seller",
+          "due_in_days": 7
+        }
+      ],
+      "seller_message": {
+        "subject": "Important update regarding your buyer message response times",
+        "body": "Hello. We have noticed that your response times to buyer messages have increased recently and your support performance may need attention. To help you get back on track, please check that your notifications are reaching the right person, prioritize any unanswered messages, and consider setting up an auto-reply for expected response times. We are here to support you, so please let us know if you need any assistance."
+      },
+      "metrics_to_recheck": [
+        "avg_response_hours",
+        "sla_compliance",
+        "complaint_count"
+      ],
+      "escalate_if": "If average response times and SLA compliance do not improve within one week, or if complaint counts begin to rise.",
+      "attempts_needed": 1
+    }
+  ]
+}

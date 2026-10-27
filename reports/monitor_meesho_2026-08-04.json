@@ -1,0 +1,196 @@
+{
+  "platform": "meesho",
+  "as_of_date": "2026-08-04",
+  "summary": "On the Meesho platform as of 2026-08-04, there are 5 confirmed declining sellers and 21 watch candidates. The issues are heavily concentrated in Seller support and Inventory categories.",
+  "alerts": [
+    {
+      "seller_id": "S0136",
+      "status": "confirmed",
+      "severity": "Critical",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "stockout_rate 0.12 vs 0.038 before",
+        "expiry_damage_rate 0.057 vs 0.008 before"
+      ],
+      "reasoning": "Severe inventory degradation characterized by soaring stockouts and damaged stock. There are no secondary categories flagged for this seller.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0160",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "evidence": [
+        "avg_response_hours 32.907 vs 8.674 before",
+        "sla_compliance 0.5 vs 0.75 before"
+      ],
+      "reasoning": "Customer and support inquiry response times have drastically slowed down, missing service level agreements. There are no secondary categories flagged for this seller.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0114",
+      "status": "confirmed",
+      "severity": "Critical",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "stockout_rate 0.143 vs 0.024 before",
+        "expiry_damage_rate 0.071 vs 0.012 before"
+      ],
+      "reasoning": "The seller is experiencing critical inventory bottlenecks with significantly higher stockout and damage rates. There are no secondary categories flagged for this seller.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0061",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "evidence": [
+        "avg_response_hours 17.49 vs 10.711 before",
+        "sla_compliance 0.0 vs 0.69 before"
+      ],
+      "reasoning": "Complete collapse in support SLA compliance accompanied by severely delayed response times. There are no secondary categories flagged for this seller.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0141",
+      "status": "confirmed",
+      "severity": "At-risk",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "evidence": [
+        "avg_response_hours 18.817 vs 13.762 before",
+        "sla_compliance 0.083 vs 0.617 before"
+      ],
+      "reasoning": "Support performance has deteriorated with sharply declining SLA compliance and slower response times. There are no secondary categories flagged for this seller.",
+      "investigated": true
+    },
+    {
+      "seller_id": "S0184",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Logistics",
+      "secondary_categories": [
+        "Inventory"
+      ],
+      "evidence": [
+        "Logistics sub-score 0.16 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0106",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Marketing",
+      "secondary_categories": [],
+      "evidence": [
+        "Marketing sub-score 0.249 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0140",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Logistics",
+      "secondary_categories": [],
+      "evidence": [
+        "Logistics sub-score 0.197 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0199",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "Inventory sub-score 0.237 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0138",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Marketing",
+      "secondary_categories": [],
+      "evidence": [
+        "Marketing sub-score 0.191 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0077",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Logistics",
+      "secondary_categories": [],
+      "evidence": [
+        "Logistics sub-score 0.197 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0010",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Seller support",
+      "secondary_categories": [
+        "Inventory"
+      ],
+      "evidence": [
+        "Seller support sub-score 0.086 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0008",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Inventory",
+      "secondary_categories": [],
+      "evidence": [
+        "Inventory sub-score 0.33 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0093",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Seller support",
+      "secondary_categories": [],
+      "evidence": [
+        "Seller support sub-score 0.197 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    },
+    {
+      "seller_id": "S0015",
+      "status": "watch",
+      "severity": "Watch",
+      "primary_category": "Finance",
+      "secondary_categories": [],
+      "evidence": [
+        "Finance sub-score 0.257 (flagged 1 week(s) in a row)"
+      ],
+      "reasoning": "Not investigated in detail (lower priority); the status comes from the scoring rule.",
+      "investigated": false
+    }
+  ]
+}
