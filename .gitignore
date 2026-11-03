@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 kb_index/
+presentation/
+reports/
+chatbot_app.py
+docs/
