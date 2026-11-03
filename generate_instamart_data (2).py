@@ -1,19 +1,23 @@
 """
-Synthetic Instamart (quick-commerce grocery) data for the Seller Health Monitoring Agent.
+Synthetic INSTAMART (quick-commerce grocery) data for the Seller Health Monitoring Agent.
 
-Same relational model and mechanics as generate_meesho_data.py:
-  10 tables  -> sellers, listings, listing_daily, orders, order_items, order_payments,
-                order_returns, order_reviews, complaints, buyer_messages
-  + ground_truth.csv, which is for EVALUATION ONLY - the agents must never read it.
-
-What is different is the *business*: Instamart sells groceries from dark stores with a
-10-30 minute delivery promise. Brand/vendor sellers supply items to those dark stores, so:
-  - volumes per seller are high, returns are rare, but "refund without a return"
-    (missing / damaged item) is common
-  - stockouts and expiry/damage are everyday problems (worst for fresh produce)
+Instamart model: brand/vendor sellers supply SKUs to dark stores, and buyers get a
+10-30 minute delivery. Compared with Meesho this means
+  - high order volume per seller, multi-item baskets that mix several sellers
+  - "late shipment" = the delivery promise was missed
+  - cancellations mostly mean the item was unavailable
+  - very few returns, but many refunds without a return (missing or damaged item)
   - buyer messages are live chat, so the SLA is 1 hour, not 12
-  - Inventory and Logistics are the dominant failure modes
-  - a 3-day heavy-rain event delays EVERY seller - a confounder the agent should not flag
+  - perishables (fruit, veg, dairy) expire or get damaged far more often
+
+Writes the same 10 tables as the Meesho generator (sellers, listings, listing_daily,
+orders, order_items, order_payments, order_returns, order_reviews, complaints,
+buyer_messages) plus ground_truth.csv, which is for EVALUATION ONLY - the
+agents must never read it.
+
+Also injects one platform-wide heavy-rain event (late deliveries spike for ALL
+sellers for 3 days). It is a confounder: the agent should not flag sellers for it.
+The rain dates are printed at the end and stored in RAIN_DAYS below.
 
 Run:  python generate_instamart_data.py
 Then: python aggregate_metrics.py instamart
@@ -23,61 +27,65 @@ import numpy as np
 import pandas as pd
 
 SEED = 23
-N_SELLERS = 100
+N_SELLERS = 200
 N_DAYS = 90
 START = pd.Timestamp("2026-07-01")          # window: 2026-07-01 -> 2026-09-28
 OUT = "instamart_data"
-SLA_HOURS = 1                               # chat support must reply within 1 hour
+SLA_HOURS = 1                                # chat support: reply within 1 hour
 
-# Platform-wide heavy rain: every seller misses more delivery promises for 3 days.
-RAIN_START_DAY = 49                         # day index 49 = 2026-08-19
-RAIN_DAYS = 3
-RAIN_LATE_BUMP = 0.20                       # +20 percentage points late shipment
+# Daily order-item ranges per tier are Small 15-30, Medium 40-80, Large 100-160.
+# At full size that is ~930k order items over 90 days. VOLUME_SCALE shrinks every
+# tier by the same factor so the total stays near 400k (set 1.0 for full volume).
+VOLUME_SCALE = 0.39
+
+# Platform-wide heavy rain: +20 percentage points late delivery for every seller.
+RAIN_DAYS = [49, 50, 51]                     # 0-indexed -> 2026-08-19 .. 2026-08-21
+RAIN_LATE_BUMP = 0.20
 
 rng = np.random.default_rng(SEED)
 os.makedirs(OUT, exist_ok=True)
 dates = pd.date_range(START, periods=N_DAYS)
 S, D = N_SELLERS, N_DAYS
-day = np.arange(D)
 
 # ---------------------------------------------------------------- sellers
 CATS = ["Fruits & Vegetables", "Dairy & Bakery", "Snacks & Beverages",
         "Staples", "Personal & Home Care"]
-seller_cat = rng.choice(CATS, S, p=[0.22, 0.20, 0.22, 0.20, 0.16])
-
-# Exact 50/35/15 size mix (shuffled), so total volume is predictable with only 100 sellers.
-tier = rng.permutation(np.repeat(["Small", "Medium", "Large"], [50, 35, 15]))
+seller_cat = rng.choice(CATS, S, p=[0.22, 0.18, 0.25, 0.20, 0.15])
+tier = rng.choice(["Small", "Medium", "Large"], S, p=[0.50, 0.35, 0.15])
 tenure_days = rng.integers(30, 2000, S)
 join_date = START - pd.to_timedelta(tenure_days, unit="D")
-is_new = tenure_days < 180                  # new sellers are a bit less reliable
+is_new = tenure_days < 180
 
-# Average order items per day for each seller (before weekday effects / declines).
-base_vol = np.where(tier == "Small", rng.uniform(15, 30, S),
-            np.where(tier == "Medium", rng.uniform(40, 80, S), rng.uniform(100, 160, S)))
-# Number of SKUs (listings) each seller supplies to the dark stores.
-n_list = np.where(tier == "Small", rng.integers(6, 13, S),
+base_vol = VOLUME_SCALE * np.where(
+    tier == "Small", rng.uniform(15, 30, S),
+    np.where(tier == "Medium", rng.uniform(40, 80, S), rng.uniform(100, 160, S)))
+# number of SKUs (listings) each seller supplies to the dark stores
+n_list = np.where(tier == "Small", rng.integers(5, 13, S),
           np.where(tier == "Medium", rng.integers(12, 26, S), rng.integers(25, 46, S)))
 
-# Category-level baselines. Fresh produce returns / spoils more; packaged goods barely spoil.
+# Category-dependent baselines. Returns are rare in grocery; expiry/damage is
+# much higher for perishables.
 RETURN_BY_CAT = {"Fruits & Vegetables": 0.030, "Dairy & Bakery": 0.025,
-                 "Snacks & Beverages": 0.020, "Staples": 0.020, "Personal & Home Care": 0.030}
+                 "Snacks & Beverages": 0.020, "Staples": 0.020,
+                 "Personal & Home Care": 0.030}
 EXPIRY_BY_CAT = {"Fruits & Vegetables": 0.050, "Dairy & Bakery": 0.030,
-                 "Snacks & Beverages": 0.005, "Staples": 0.005, "Personal & Home Care": 0.005}
+                 "Snacks & Beverages": 0.005, "Staples": 0.005,
+                 "Personal & Home Care": 0.005}
 
-# Healthy per-seller baselines (each seller gets its own value around the target).
-base_late = rng.beta(10, 100, S) + 0.02 * is_new          # ~9% missed delivery promise
-base_cancel = rng.beta(9, 195, S) + 0.002                 # ~4.5% item unavailable
+# Per-seller healthy baselines (each seller is a little different)
+base_late = np.clip(rng.normal(0.088, 0.012, S) + 0.01 * is_new, 0.04, 0.20)   # missed promise
+base_cancel = np.clip(rng.normal(0.045, 0.006, S), 0.02, 0.10)                  # item unavailable
 base_return = np.clip(np.array([RETURN_BY_CAT[c] for c in seller_cat])
-                      + rng.normal(0, 0.005, S), 0.005, 0.10)   # ~2-3%
-base_refund_nr = rng.beta(11, 190, S)                     # ~5.5% refund WITHOUT a return
-base_rating = rng.normal(4.62, 0.12, S) - 0.15 * is_new   # tuned so observed avg ~4.2
-base_payout = rng.beta(1.5, 45, S) + 0.01                 # payout delays, as Meesho
-base_resp = rng.lognormal(np.log(0.4), 0.2, S)            # median chat reply ~0.4 h
-base_quality = np.clip(rng.normal(88, 3.5, S), 75, 97)    # listings are high quality
-base_roas = rng.lognormal(np.log(2.6), 0.25, S)           # moderate ad return
-base_stockout = np.clip(rng.normal(0.09, 0.008, S), 0.06, 0.12)   # ~8-10%
+                      + rng.normal(0, 0.004, S), 0.005, 0.10)
+base_refund_noret = np.clip(rng.normal(0.055, 0.008, S), 0.03, 0.09)           # missing/damaged
+base_rating = rng.normal(4.53, 0.12, S) - 0.1 * is_new
+base_payout = rng.beta(1.5, 45, S) + 0.01
+base_resp = rng.lognormal(np.log(0.4), 0.2, S)                                  # hours, chat
+base_quality = np.clip(rng.normal(88, 3, S), 78, 96)                            # high and stable
+base_roas = rng.lognormal(np.log(2.5), 0.25, S)                                 # moderate
+base_stockout = np.clip(rng.normal(0.09, 0.012, S), 0.05, 0.14)
 base_expiry = (np.array([EXPIRY_BY_CAT[c] for c in seller_cat])
-               * rng.lognormal(0, 0.10, S))
+               * rng.lognormal(0, 0.15, S))
 
 seller_ids = np.array([f"S{i+1:04d}" for i in range(S)])
 sellers = pd.DataFrame({
@@ -90,41 +98,38 @@ KEYS = ["marketing", "logistics", "support", "cx", "finance", "inventory"]
 NICE = {"marketing": "Marketing", "logistics": "Logistics", "support": "Seller support",
         "cx": "Customer Experience", "finance": "Finance", "inventory": "Inventory"}
 sev = {k: np.zeros((S, D)) for k in KEYS}
+day = np.arange(D)
 
 # Instamart: Inventory and Logistics dominate (40 declining sellers in total)
 primary_plan = (["inventory"] * 12 + ["logistics"] * 12 + ["marketing"] * 5 +
                 ["cx"] * 5 + ["finance"] * 3 + ["support"] * 3)
-SECONDARY = {"inventory": "logistics", "logistics": "support"}   # knock-on problems
-n_decl = len(primary_plan)
+# Knock-on problems: a stocked-out seller starts missing delivery promises;
+# a seller with delivery problems gets swamped in support chats.
+SECONDARY = {"inventory": ["logistics"], "logistics": ["support"], "marketing": ["cx"],
+             "cx": ["support"], "finance": ["support"], "support": ["cx"]}
 
-at_risk = rng.choice(S, n_decl, replace=False)
+at_risk = rng.choice(S, len(primary_plan), replace=False)
 rng.shuffle(primary_plan)
-# Exactly 25% sudden (10 of 40), and 10 knock-ons (25% of 40) picked among the
-# Inventory/Logistics sellers, since those are the only ones with a knock-on path.
-sudden_set = set(rng.choice(n_decl, n_decl // 4, replace=False))
-eligible = [j for j, p in enumerate(primary_plan) if p in SECONDARY]
-knock_set = set(rng.choice(eligible, n_decl // 4, replace=False))
-
 gt = pd.DataFrame({"seller_id": seller_ids, "is_at_risk": 0, "primary_category": "",
                    "secondary_category": "", "decline_start_date": "",
                    "full_decline_date": "", "decline_speed": "",
                    "temporary_dip_category": "", "dip_start_date": "", "dip_end_date": ""})
 
 def ramp(start, length, peak=1.0):
-    """0 before `start`, rises linearly to `peak` over `length` days, then stays there."""
+    """0 before `start`, rises linearly to `peak` over `length` days, then stays."""
     return peak * np.clip((day - start) / length, 0, 1)
 
-for j, (s, prim) in enumerate(zip(at_risk, primary_plan)):
+for s, prim in zip(at_risk, primary_plan):
     start = int(rng.integers(25, 56))
-    sudden = j in sudden_set
+    sudden = rng.random() < 0.25                       # ~25% sudden, 75% gradual
     length = int(rng.integers(3, 8)) if sudden else int(rng.integers(14, 29))
     sev[prim][s] = np.maximum(sev[prim][s], ramp(start, length))
     row = {"is_at_risk": 1, "primary_category": NICE[prim],
            "decline_start_date": dates[start].strftime("%Y-%m-%d"),
            "full_decline_date": dates[min(start + length, D - 1)].strftime("%Y-%m-%d"),
            "decline_speed": "sudden" if sudden else "gradual"}
-    if j in knock_set:  # a knock-on problem appears 10-20 days later
-        sec = SECONDARY[prim]
+    if rng.random() < 0.25:  # a knock-on problem appears later
+        sec = str(rng.choice(SECONDARY[prim]))
         sstart = min(start + int(rng.integers(10, 21)), D - 15)
         sev[sec][s] = np.maximum(sev[sec][s], ramp(sstart, int(rng.integers(10, 21)), 0.8))
         row["secondary_category"] = NICE[sec]
@@ -144,9 +149,10 @@ for s in rng.choice(healthy, 12, replace=False):
     gt.loc[s, "dip_start_date"] = dates[st].strftime("%Y-%m-%d")
     gt.loc[s, "dip_end_date"] = dates[min(st + 6, D - 1)].strftime("%Y-%m-%d")
 
-# Platform-wide rain: NOT a seller problem, so it is not in ground_truth and not in sev.
+# Platform-wide rain shock, shape (D,). NOT a seller problem, so it is kept out
+# of sev[] and out of ground_truth.
 rain = np.zeros(D)
-rain[RAIN_START_DAY:RAIN_START_DAY + RAIN_DAYS] = RAIN_LATE_BUMP
+rain[RAIN_DAYS] = RAIN_LATE_BUMP
 
 # ---------------------------------------------------------------- listings
 list_seller = np.repeat(np.arange(S), n_list)
@@ -157,23 +163,26 @@ listings = pd.DataFrame({"listing_id": listing_ids, "seller_id": seller_ids[list
 
 # ----------------------------------------------------------- listing_daily
 vuln = rng.uniform(0.5, 1.2, L)                 # how hard a listing is hit by a decline
-lst_off = rng.normal(0, 3, L)                   # small per-SKU quality offset
+lst_off = rng.normal(0, 3, L)                   # small per-SKU offset: quality is stable
 advertised = rng.random(L) < 0.5
-sm = sev["marketing"][list_seller]              # L x D
+sm = sev["marketing"][list_seller]               # L x D
 si = sev["inventory"][list_seller]
 
-# Listing quality: high and stable (small daily noise); Marketing decline erodes it.
+# Marketing decline: listing quality drops, content flags appear, ads stop paying back
 quality = (base_quality[list_seller][:, None] + lst_off[:, None]
            + rng.normal(0, 0.8, (L, D)) - 30 * sm * vuln[:, None])
 quality = np.clip(quality, 0, 100).round(1)
-content_flag = (rng.random((L, D)) < 0.008 + 0.25 * sm).astype(int)   # rare when healthy
-roas = (base_roas[list_seller][:, None] * rng.lognormal(0, 0.20, (L, D))
-        * (1 - 0.60 * sm * vuln[:, None]))
+content_flag = (rng.random((L, D)) < 0.005 + 0.25 * sm).astype(int)
+roas = (base_roas[list_seller][:, None] * rng.lognormal(0, 0.25, (L, D))
+        * (1 - 0.65 * sm * vuln[:, None]))
 roas = np.clip(roas, 0.1, None).round(2)
 roas[~advertised] = np.nan
-# Inventory decline: SKUs go out of stock and spoil/arrive damaged far more often.
+
+# Inventory decline: more stockouts, and more expired/damaged stock
+# (perishable sellers get hit harder because their baseline is higher)
 stockout = (rng.random((L, D)) < base_stockout[list_seller][:, None] + 0.40 * si).astype(int)
-damaged = (rng.random((L, D)) < base_expiry[list_seller][:, None] + 0.10 * si).astype(int)
+p_dmg = base_expiry[list_seller][:, None] * (1 + 2 * si) + 0.04 * si
+damaged = (rng.random((L, D)) < p_dmg).astype(int)
 
 listing_daily = pd.DataFrame({
     "listing_id": np.repeat(listing_ids, D),
@@ -185,70 +194,67 @@ listing_daily = pd.DataFrame({
     "is_expired_or_damaged": damaged.ravel()})
 
 # ------------------------------------------------------------- order_items
-# Weekend uplift, normalised to average 1.0 so base_vol stays the "typical day".
-wk = np.array([1.0, 1.0, 1.0, 1.0, 1.05, 1.12, 1.10])[dates.dayofweek]
-wk = wk / wk.mean()
-lam = (base_vol[:, None] * wk[None, :] * rng.lognormal(0, 0.08, (S, D))
-       * (1 - 0.30 * sev["marketing"] - 0.30 * sev["inventory"]))
+wk = np.array([1.0, 1.0, 1.0, 1.0, 1.05, 1.12, 1.10])[dates.dayofweek]  # weekend lift
+lam = (base_vol[:, None] * wk[None, :] * rng.lognormal(0, 0.10, (S, D))
+       * (1 - 0.15 * sev["marketing"] - 0.30 * sev["inventory"]))
 counts = rng.poisson(lam)
 sidx = np.repeat(np.repeat(np.arange(S), D), counts.ravel())   # seller of each item
 didx = np.repeat(np.tile(day, S), counts.ravel())              # day of each item
 n = len(sidx)
 
 def sv(k):
-    """Severity of category k for every order item (looked up by its seller and day)."""
+    """Severity of problem k for every order item (seller, day)."""
     return sev[k][sidx, didx]
 
 lid_idx = list_start[sidx] + (rng.random(n) * n_list[sidx]).astype(int)
 
-# Cancellation = item unavailable at the dark store. Inventory decline drives it.
-p_cancel = np.clip(base_cancel[sidx] + 0.25 * sv("inventory") + 0.06 * sv("logistics"), 0, 0.9)
+# Cancellation = item unavailable at the dark store -> driven by Inventory
+p_cancel = np.clip(base_cancel[sidx] + 0.20 * sv("inventory") + 0.04 * sv("logistics"), 0, 0.9)
 cancelled = rng.random(n) < p_cancel
 delivered = ~cancelled
-# Late = missed the 10-30 minute promise. Logistics decline + the rain event drive it.
+
+# Late = missed 10-30 min promise -> Logistics, plus the platform-wide rain
 p_late = np.clip(base_late[sidx] + 0.45 * sv("logistics") + rain[didx], 0, 0.95)
 late = delivered & (rng.random(n) < p_late)
 
-# Returns are rare in grocery (you don't send milk back); bad quality (CX) raises them.
-p_ret = np.clip(base_return[sidx] + 0.02 * late + 0.10 * sv("cx") + 0.04 * sv("marketing"), 0, 0.95)
+p_ret = np.clip(base_return[sidx] + 0.06 * sv("cx") + 0.03 * sv("marketing") + 0.01 * late, 0, 0.95)
 returned = delivered & (rng.random(n) < p_ret)
 
-# Refund without a return: missing or damaged item, refunded on the spot. Common.
-p_ref_nr = np.clip(base_refund_nr[sidx] + 0.12 * sv("finance") + 0.10 * sv("cx")
-                   + 0.06 * sv("inventory"), 0, 0.9)
-refunded_nr = delivered & ~returned & (rng.random(n) < p_ref_nr)
-# Prepaid orders: cancellations are almost always refunded (Meesho used 0.6 for COD).
-refunded = ((returned & (rng.random(n) < 0.95)) | (cancelled & (rng.random(n) < 0.90))
-            | refunded_nr)
+# Refunds: almost every return, most cancellations, and - common in grocery -
+# delivered items refunded without a return (missing / damaged in the bag)
+p_ref_noret = np.clip(base_refund_noret[sidx] + 0.10 * sv("finance")
+                      + 0.06 * sv("cx") + 0.04 * sv("inventory"), 0, 0.9)
+refunded = ((returned & (rng.random(n) < 0.95)) | (cancelled & (rng.random(n) < 0.6))
+            | (delivered & ~returned & (rng.random(n) < p_ref_noret)))
 payout_delayed = (~cancelled) & (rng.random(n) < np.clip(base_payout[sidx] + 0.35 * sv("finance"), 0, 0.9))
 
-# Reviews: few people rate grocery orders (~15%).
-has_review = delivered & (rng.random(n) < 0.15 + 0.05 * returned)
-mu = (base_rating[sidx] - 1.3 * late - 1.1 * returned - 1.0 * refunded_nr
-      - 1.4 * sv("cx") - 0.5 * sv("marketing") - 0.6 * sv("logistics"))
+# Reviews are rare (~15%). Late deliveries and Logistics problems pull ratings down.
+has_review = delivered & (rng.random(n) < 0.14 + 0.10 * returned)
+mu = (base_rating[sidx] - 1.0 * late - 1.1 * returned - 1.4 * sv("cx")
+      - 0.5 * sv("marketing") - 0.3 * sv("logistics"))
 rating = np.clip(np.rint(rng.normal(mu, 0.85)), 1, 5).astype(int)
 
-# Complaints: knock-on from late deliveries (Logistics) and bad items (CX).
-p_cmp = (0.008 + 0.05 * late + 0.06 * returned + 0.05 * refunded_nr
-         + 0.10 * sv("cx") + 0.06 * sv("logistics"))
+p_cmp = (0.008 + 0.06 * late + 0.06 * returned + 0.10 * sv("cx")
+         + 0.04 * sv("logistics") + 0.02 * sv("inventory"))
 has_cmp = delivered & (rng.random(n) < p_cmp)
 
-# Buyer messages = live chat. Short replies; Seller-support decline makes them slow.
-p_msg = 0.08 + 0.25 * late + 0.10 * cancelled + 0.15 * refunded_nr
+# Chat messages: mostly "where is my order?" -> late items generate many more
+p_msg = 0.08 + 0.25 * late + 0.10 * cancelled
 has_msg = rng.random(n) < p_msg
-resp_h = rng.lognormal(np.log(base_resp[sidx] * (1 + 5.0 * sv("support"))), 0.68)
+# median ~0.4 h; sigma 0.68 (+ seller spread) puts ~90% under the 1-hour SLA
+resp_h = rng.lognormal(np.log(base_resp[sidx] * (1 + 3.5 * sv("support"))), 0.68)
 
-# ------------------------------------------- group items into orders (baskets)
-# A quick-commerce basket usually holds 1-4 items from different brand sellers,
-# all packed at the same dark store on the same day.
-order_key = np.empty(n, dtype=np.int64)
-next_key = 0
+# ------------------------------------------- group items into baskets (orders)
+# A quick-commerce basket holds 1-5 items, usually from DIFFERENT brand sellers.
+# Items are shuffled within each day and cut into baskets, so every order
+# belongs to exactly one date.
+order_key = np.zeros(n, dtype=np.int64)
+BASKET_SIZES, BASKET_P = [1, 2, 3, 4, 5], [0.35, 0.25, 0.20, 0.12, 0.08]
 for d in range(D):
     ids = rng.permutation(np.where(didx == d)[0])
-    sizes = rng.choice([1, 2, 3, 4], len(ids), p=[0.35, 0.30, 0.20, 0.15])
-    keys = np.repeat(np.arange(len(sizes)), sizes)[: len(ids)]
-    order_key[ids] = next_key + keys
-    next_key += int(keys.max()) + 1 if len(ids) else 0
+    sizes = rng.choice(BASKET_SIZES, len(ids), p=BASKET_P)        # more than enough
+    basket = np.repeat(np.arange(len(sizes)), sizes)[: len(ids)]
+    order_key[ids] = d * 10_000_000 + basket
 
 items = pd.DataFrame({
     "k": order_key, "day": didx, "seller": sidx, "listing": lid_idx,
@@ -304,7 +310,7 @@ tables = {"sellers": sellers, "listings": listings, "listing_daily": listing_dai
 for name, df in tables.items():
     df.to_csv(os.path.join(OUT, f"{name}.csv"), index=False)
     print(f"{name:16s} {len(df):>8,} rows")
-rain_dates = dates[RAIN_START_DAY:RAIN_START_DAY + RAIN_DAYS]
 print(f"\nAt-risk sellers: {int(gt.is_at_risk.sum())} | temporary dips: "
       f"{int((gt.temporary_dip_category != '').sum())} | window: {dates[0].date()} -> {dates[-1].date()}")
-print(f"Platform-wide rain event (confounder): {rain_dates[0].date()} -> {rain_dates[-1].date()}")
+print(f"Rain event (platform-wide, not in ground truth): "
+      f"{dates[RAIN_DAYS[0]].date()} -> {dates[RAIN_DAYS[-1]].date()}, late +{RAIN_LATE_BUMP:.0%}")
