@@ -124,6 +124,4 @@ Start-date and speed figures come from 31 diagnosed sellers (17, 9 and 5), so on
 - "Confirmed" needs only 2 flagged weeks, so early dates can produce false alarms.
 - One small free-tier model; the LLM can occasionally write thresholds that are not in the diagnosis.
 
-## Team
 
-Team No: [__]. Reethika ([Reg No]), [Name] ([Reg No]), [Name] ([Reg No]). Course faculty: [Name]. Industry mentor: Amit Shah, Delivery Unit Head, MathCo.
